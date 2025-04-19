@@ -1,0 +1,32 @@
+﻿@using OptTorgWebDB.Models
+@model Packaging
+
+<body class="text-center">
+	<main class="w-25 position-absolute top-50 start-50 translate-middle">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline  fw-bold m-1">Редактировать</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Тип упаковки</p>
+
+		<form class="p-5 border d-grid gap-2" asp-controller="Packaging" asp-action="OpenEPackaging" method="post">
+			<div class="form-floating">
+				<input class="form-control" asp-for="IdPackaging" readonly>
+				<label asp-for="IdPackaging">Ид</label>
+				<span asp-validation-for="IdPackaging" class="text-danger" value="IdPackaging"></span>
+			</div>
+
+			<div class="form-floating">
+				<input class="form-control" asp-for="Type">
+				<label asp-for="Type">Наименование</label>
+				<span asp-validation-for="Type" class="text-danger"></span>
+			</div>
+			<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesPackaging" method="post">Сохранить</button>
+		</form>
+
+		<form class="p-5 d-grid gap-1" asp-controller="Packaging" method="get">
+			<button class="btn btn-lg btn-warning" type="submit" asp-action="TPackaging" method="get">Отмена</button>
+		</form>
+	</main>
+</body>
+
+

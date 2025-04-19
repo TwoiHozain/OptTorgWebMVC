@@ -15,5 +15,40 @@ public partial class MeasureUnits
 
     public string OkeiCode { get; set; }
 
+    public bool Active { get; set; }
+
     public virtual ICollection<Products> Products { get; set; } = new List<Products>();
+
+
+    public static List<MeasureUnits> GetAllMeasureUnits()
+    {
+        var db = new OptTorgDBContext();
+        return db.MeasureUnits.Where(x => x.Active == true).ToList();
+    }
+    public static void CreatrPosition(MeasureUnits p)
+    {
+        var db = new OptTorgDBContext();
+        p.Active = true;
+        db.MeasureUnits.Add(p);
+        db.SaveChanges();
+    }
+    public static MeasureUnits GetPositionById(int id)
+    {
+        var db = new OptTorgDBContext();
+        return db.MeasureUnits.Single(x => x.IdMu == id);
+    }
+    public static void UpdatePosition(MeasureUnits p)
+    {
+        var db = new OptTorgDBContext();
+        db.MeasureUnits.Update(p);
+        db.SaveChanges();
+    }
+    public static void DeletePosition(int id)
+    {
+        var db = new OptTorgDBContext();
+        var pos = db.MeasureUnits.FirstOrDefault(x => x.IdMu == id);
+        pos.Active = false;
+
+        db.SaveChanges();
+    }
 }

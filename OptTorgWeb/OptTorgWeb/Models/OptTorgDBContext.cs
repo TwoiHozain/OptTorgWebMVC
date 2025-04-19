@@ -63,7 +63,7 @@ public partial class OptTorgDBContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Password=Golubgolub;Username=postgres;Database=OptTorgDB;Host=localhost");
+        => optionsBuilder.UseNpgsql("Host=localhost;Database=OptTorgDB;Username=postgres;Password=Golubgolub;Persist Security Info=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -124,6 +124,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.IdCof)
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id_cof");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
             entity.Property(e => e.NumericCode)
                 .IsRequired()
                 .HasColumnName("numeric_code");
@@ -235,6 +238,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.IdDs)
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id_ds");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
             entity.Property(e => e.Status)
                 .IsRequired()
                 .HasColumnName("status");
@@ -312,6 +318,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.IdMu)
                 .ValueGeneratedNever()
                 .HasColumnName("id_mu");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
             entity.Property(e => e.Name)
                 .IsRequired()
                 .HasColumnName("name");
@@ -332,6 +341,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.IdPackaging)
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id_packaging");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
             entity.Property(e => e.Type)
                 .IsRequired()
                 .HasColumnName("type");
@@ -346,6 +358,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.IdPositions)
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id_positions");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
             entity.Property(e => e.Name)
                 .IsRequired()
                 .HasColumnName("name");
@@ -405,6 +420,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.IdPs)
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id_ps");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
             entity.Property(e => e.SortName)
                 .IsRequired()
                 .HasColumnName("sort_name");
@@ -587,6 +605,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.IdSs)
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id_ss");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
             entity.Property(e => e.Status)
                 .IsRequired()
                 .HasColumnName("status");
@@ -693,6 +714,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.IdTransport)
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id_transport");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
             entity.Property(e => e.GosNomer)
                 .IsRequired()
                 .HasColumnName("gos_nomer");

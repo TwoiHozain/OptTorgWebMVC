@@ -1,0 +1,32 @@
+﻿@using OptTorgWebDB.Models
+@model Positions
+
+<body class="text-center">
+	<main class="w-25 position-absolute top-50 start-50 translate-middle">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline  fw-bold m-1">Редактировать</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Должность</p>
+
+		<form class="p-5 border d-grid gap-2" asp-controller="Positions" asp-action="OpenEPositions" method="post">
+			<div class="form-floating">
+				<input class="form-control" asp-for="IdPositions" readonly>
+				<label asp-for="IdPositions">Ид</label>
+				<span asp-validation-for="IdPositions" class="text-danger" value="IdPositions"></span>
+			</div>
+
+			<div class="form-floating">
+				<input class="form-control" asp-for="Name">
+				<label asp-for="Name">Наименование</label>
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesPositions" method="post">Сохранить</button>
+		</form>
+
+		<form class="p-5 d-grid gap-1" asp-controller="Positions" method="get">
+			<button class="btn btn-lg btn-warning" type="submit" asp-action="TPositions" method="get">Отмена</button>
+		</form>
+	</main>
+</body>
+
+

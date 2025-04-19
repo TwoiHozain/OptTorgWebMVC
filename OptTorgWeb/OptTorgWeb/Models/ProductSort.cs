@@ -11,5 +11,40 @@ public partial class ProductSort
 
     public string SortName { get; set; }
 
+    public bool Active { get; set; }
+
     public virtual ICollection<Products> Products { get; set; } = new List<Products>();
+
+
+    public static List<ProductSort> GetAllProductSort()
+    {
+        var db = new OptTorgDBContext();
+        return db.ProductSort.Where(x => x.Active == true).ToList();
+    }
+    public static void CreatrProductSort(ProductSort p)
+    {
+        var db = new OptTorgDBContext();
+        p.Active = true;
+        db.ProductSort.Add(p);
+        db.SaveChanges();
+    }
+    public static ProductSort GetProductSortById(int id)
+    {
+        var db = new OptTorgDBContext();
+        return db.ProductSort.Single(x => x.IdPs == id);
+    }
+    public static void UpdateProductSort(ProductSort p)
+    {
+        var db = new OptTorgDBContext();
+        db.ProductSort.Update(p);
+        db.SaveChanges();
+    }
+    public static void DeleteProductSort(int id)
+    {
+        var db = new OptTorgDBContext();
+        var pos = db.ProductSort.FirstOrDefault(x => x.IdPs == id);
+        pos.Active = false;
+
+        db.SaveChanges();
+    }
 }

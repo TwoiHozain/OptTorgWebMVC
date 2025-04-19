@@ -24,24 +24,212 @@
         <p class="nb-nav-title">Простые тыблицы</p>
         <ul class="nb-nav">
 
+            <!-- Positions -->
             <li class="dropdown">
                 <a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
-                    <i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Bootstrap</span>
+                    <i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Должности</span>
                 </a>
-
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
-                    <li><a href="#" class="dropdown-item text-black">New project... project...</a></li>
+                    <li>
+                        <a asp-controller="Positions" asp-action="TPositions">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Просмотреть</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="Positions" asp-action="OpenCPositions">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Создать</span>
+                        </a>
+                    </li>
+
                     <li>
                         <hr class="dropdown-divider">
                     </li>
                 </ul>
             </li>
 
-            <li>
-                <a href="#">
-                    <span class="glyphicon glyphicon-comment nb-link-icon"></span>
-                    <span class="nb-link-text">Comments</span>
+            <!-- Transport -->
+            <li class="dropdown">
+                <a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+                    <i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Транспорт</span>
                 </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+                    <li>
+                        <a asp-controller="Transport" asp-action="TTransport">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Просмотреть</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="Transport" asp-action="OpenCTransport">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Создать</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Country of product -->
+            <li class="dropdown">
+                <a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+                    <i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Страны производители</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+                    <li>
+                        <a asp-controller="CountryOfProduct" asp-action="TCountryOfProduct">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Просмотреть</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="CountryOfProduct" asp-action="OpenCCountryOfProduct">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Создать</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Delivery status -->
+            <li class="dropdown">
+                <a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+                    <i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Статус доставки</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+                    <li>
+                        <a asp-controller="DeliveryStatus" asp-action="TDeliveryStatus">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Просмотреть</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="DeliveryStatus" asp-action="OpenCDeliveryStatus">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Создать</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Measure units -->
+            <li class="dropdown">
+                <a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+                    <i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Единицы измерения</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+                    <li>
+                        <a asp-controller="MeasureUnits" asp-action="TMeasureUnits">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Должности</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="MeasureUnits" asp-action="OpenCMeasureUnits">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Создать</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Product sort -->
+            <li class="dropdown">
+                <a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+                    <i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Сорт продукта</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+                    <li>
+                        <a asp-controller="ProductSort" asp-action="TProductSort">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Должности</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="ProductSort" asp-action="OpenCProductSort">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Создать</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Packaging -->
+            <li class="dropdown">
+                <a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+                    <i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Упаковка</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+                    <li>
+                        <a asp-controller="Packaging" asp-action="TPackaging">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Должности</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="Packaging" asp-action="OpenCPackaging">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Создать</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Sending status -->
+            <li class="dropdown">
+                <a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+                    <i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Статус отправки</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+                    <li>
+                        <a asp-controller="SendingStatus" asp-action="TSendingStatus">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Должности</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="SendingStatus" asp-action="OpenCSendingStatus">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Создать</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                </ul>
             </li>
         </ul>
 
@@ -63,7 +251,7 @@
         </ul>
     </div> <!-- /.dash-navbar-left -->
 
-
+@* 
     <div class="content-wrap nb-visible" data-effect="nb-push">
         <div class="container-fluid">
             <div class="row">
@@ -76,7 +264,13 @@
                 <!-- End of your content -->
             </div>
         </div>
-    </div> <!-- /.content-wrap -->
+    </div> <!-- /.content-wrap --> *@
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

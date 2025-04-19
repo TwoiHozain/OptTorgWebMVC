@@ -13,5 +13,39 @@ public partial class CountryOfProduct
 
     public string ShortName { get; set; }
 
+    public bool Active { get; set; }
+
     public virtual ICollection<Products> Products { get; set; } = new List<Products>();
+
+    public static List<CountryOfProduct> GetAllCountryOfProduct()
+    {
+        var db = new OptTorgDBContext();
+        return db.CountryOfProduct.Where(x => x.Active == true).ToList();
+    }
+    public static void CreatrPosition(CountryOfProduct p)
+    {
+        var db = new OptTorgDBContext();
+        p.Active = true;
+        db.CountryOfProduct.Add(p);
+        db.SaveChanges();
+    }
+    public static CountryOfProduct GetPositionById(int id)
+    {
+        var db = new OptTorgDBContext();
+        return db.CountryOfProduct.Single(x => x.IdCof == id);
+    }
+    public static void UpdatePosition(CountryOfProduct p)
+    {
+        var db = new OptTorgDBContext();
+        db.CountryOfProduct.Update(p);
+        db.SaveChanges();
+    }
+    public static void DeletePosition(int id)
+    {
+        var db = new OptTorgDBContext();
+        var pos = db.CountryOfProduct.FirstOrDefault(x => x.IdCof == id);
+        pos.Active = false;
+
+        db.SaveChanges();
+    }
 }

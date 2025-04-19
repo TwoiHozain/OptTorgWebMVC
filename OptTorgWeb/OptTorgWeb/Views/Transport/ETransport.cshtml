@@ -1,0 +1,44 @@
+﻿@using OptTorgWebDB.Models
+@model Transport
+
+<body class="text-center">
+	<main class="w-25 position-absolute top-50 start-50 translate-middle">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline  fw-bold m-1">Редактировать</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Транспорт</p>
+
+		<form class="p-5 border d-grid gap-2" asp-controller="Transport" asp-action="OpenETransport" method="post">
+			<div class="form-floating">
+				<input class="form-control" asp-for="IdTransport" readonly>
+				<label asp-for="IdTransport">Ид</label>
+				<span asp-validation-for="IdTransport" class="text-danger" value="IdTransport"></span>
+			</div>
+
+			<div class="form-floating">
+				<input class="form-control" asp-for="Name">
+				<label asp-for="Name">Наименование</label>
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+
+			<div class="form-floating">
+				<input class="form-control" asp-for="GosNomer">
+				<label asp-for="GosNomer">Госномер</label>
+				<span asp-validation-for="GosNomer" class="text-danger"></span>
+			</div>
+
+			<div class="form-floating">
+				<input class="form-control" asp-for="Tonnage">
+				<label asp-for="Tonnage">Тоннаж</label>
+				<span asp-validation-for="Tonnage" class="text-danger"></span>
+			</div>
+			<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesTransport" method="post">Сохранить</button>
+		</form>
+
+		<form class="p-5 d-grid gap-1" asp-controller="Transport" method="get">
+			<button class="btn btn-lg btn-warning" type="submit" asp-action="TTransport" method="get">Отмена</button>
+		</form>
+	</main>
+</body>
+
+

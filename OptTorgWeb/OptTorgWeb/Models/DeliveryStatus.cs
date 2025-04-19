@@ -11,5 +11,40 @@ public partial class DeliveryStatus
 
     public string Status { get; set; }
 
+    public bool Active { get; set; }
+
     public virtual ICollection<Delivery> Delivery { get; set; } = new List<Delivery>();
+
+
+    public static List<DeliveryStatus> GetAllDeliveryStatus()
+    {
+        var db = new OptTorgDBContext();
+        return db.DeliveryStatus.Where(x => x.Active == true).ToList();
+    }
+    public static void CreatrPosition(DeliveryStatus p)
+    {
+        var db = new OptTorgDBContext();
+        p.Active = true;
+        db.DeliveryStatus.Add(p);
+        db.SaveChanges();
+    }
+    public static DeliveryStatus GetPositionById(int id)
+    {
+        var db = new OptTorgDBContext();
+        return db.DeliveryStatus.Single(x => x.IdDeliveryStatus == id);
+    }
+    public static void UpdatePosition(DeliveryStatus p)
+    {
+        var db = new OptTorgDBContext();
+        db.DeliveryStatus.Update(p);
+        db.SaveChanges();
+    }
+    public static void DeletePosition(int id)
+    {
+        var db = new OptTorgDBContext();
+        var pos = db.DeliveryStatus.FirstOrDefault(x => x.IdDeliveryStatus == id);
+        pos.Active = false;
+
+        db.SaveChanges();
+    }
 }

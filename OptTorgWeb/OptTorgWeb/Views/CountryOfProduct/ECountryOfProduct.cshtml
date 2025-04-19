@@ -1,0 +1,39 @@
+﻿@using OptTorgWebDB.Models
+@model CountryOfProduct
+
+<body class="text-center">
+	<main class="w-25 position-absolute top-50 start-50 translate-middle">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline  fw-bold m-1">Редактировать</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Стратну производитель</p>
+
+		<form class="p-5 border d-grid gap-2" asp-controller="CountryOfProduct" asp-action="OpenECountryOfProduct" method="post">
+			<div class="form-floating">
+				<input class="form-control" asp-for="IdCof" readonly>
+				<label asp-for="IdCof">Ид</label>
+				<span asp-validation-for="IdCof" class="text-danger" value="IdCof"></span>
+			</div>
+
+			<div class="form-floating">
+				<input class="form-control" asp-for="NumericCode">
+				<label asp-for="NumericCode">Код</label>
+				<span asp-validation-for="NumericCode" class="text-danger"></span>
+			</div>
+
+			<div class="form-floating">
+				<input class="form-control" asp-for="ShortName">
+				<label asp-for="ShortName">Краткое наименование</label>
+				<span asp-validation-for="ShortName" class="text-danger"></span>
+			</div>
+
+			<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesCountryOfProduct" method="post">Сохранить</button>
+		</form>
+
+		<form class="p-5 d-grid gap-1" asp-controller="CountryOfProduct" method="get">
+			<button class="btn btn-lg btn-warning" type="submit" asp-action="TCountryOfProduct" method="get">Отмена</button>
+		</form>
+	</main>
+</body>
+
+

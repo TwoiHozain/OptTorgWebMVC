@@ -15,7 +15,41 @@ public partial class Transport
 
     public double Tonnage { get; set; }
 
+    public bool Active { get; set; }
+
     public virtual ICollection<Delivery> Delivery { get; set; } = new List<Delivery>();
 
     public virtual ICollection<Sending> Sending { get; set; } = new List<Sending>();
+
+    public static List<Transport> GetAllTransport()
+    {
+        var db = new OptTorgDBContext();
+        return db.Transport.Where(x => x.Active == true).ToList();
+    }
+    public static void CreatrPosition(Transport p)
+    {
+        var db = new OptTorgDBContext();
+        p.Active = true;
+        db.Transport.Add(p);
+        db.SaveChanges();
+    }
+    public static Transport GetPositionById(int id)
+    {
+        var db = new OptTorgDBContext();
+        return db.Transport.Single(x => x.IdTransport == id);
+    }
+    public static void UpdatePosition(Transport p)
+    {
+        var db = new OptTorgDBContext();
+        db.Transport.Update(p);
+        db.SaveChanges();
+    }
+    public static void DeletePosition(int id)
+    {
+        var db = new OptTorgDBContext();
+        var pos = db.Transport.FirstOrDefault(x => x.IdTransport == id);
+        pos.Active = false;
+
+        db.SaveChanges();
+    }
 }

@@ -11,5 +11,40 @@ public partial class Packaging
 
     public string Type { get; set; }
 
+    public bool Active { get; set; }
+
     public virtual ICollection<Products> Products { get; set; } = new List<Products>();
+
+
+    public static List<Packaging> GetAllPackaging()
+    {
+        var db = new OptTorgDBContext();
+        return db.Packaging.Where(x => x.Active == true).ToList();
+    }
+    public static void CreatrPackaging(Packaging p)
+    {
+        var db = new OptTorgDBContext();
+        p.Active = true;
+        db.Packaging.Add(p);
+        db.SaveChanges();
+    }
+    public static Packaging GetPackagingById(int id)
+    {
+        var db = new OptTorgDBContext();
+        return db.Packaging.Single(x => x.IdPackaging == id);
+    }
+    public static void UpdatePackaging(Packaging p)
+    {
+        var db = new OptTorgDBContext();
+        db.Packaging.Update(p);
+        db.SaveChanges();
+    }
+    public static void DeletePackaging(int id)
+    {
+        var db = new OptTorgDBContext();
+        var pos = db.Packaging.FirstOrDefault(x => x.IdPackaging == id);
+        pos.Active = false;
+
+        db.SaveChanges();
+    }
 }

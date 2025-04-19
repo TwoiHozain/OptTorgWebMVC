@@ -1,0 +1,44 @@
+﻿@using OptTorgWebDB.Models
+@model MeasureUnits
+
+<body class="text-center">
+	<main class="w-25 position-absolute top-50 start-50 translate-middle">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline  fw-bold m-1">Редактировать</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Единицы измерения</p>
+
+		<form class="p-5 border d-grid gap-2" asp-controller="MeasureUnits" asp-action="OpenEMeasureUnits" method="post">
+			<div class="form-floating">
+				<input class="form-control" asp-for="IdMu" readonly>
+				<label asp-for="IdMu">Ид</label>
+				<span asp-validation-for="IdMu" class="text-danger" value="IdMu"></span>
+			</div>
+
+			<div class="form-floating">
+				<input class="form-control" asp-for="Name">
+				<label asp-for="Name">Наименование</label>
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+
+			<div class="form-floating">
+				<input class="form-control" asp-for="UslovnoeObozn">
+				<label asp-for="UslovnoeObozn">Условное обозначение</label>
+				<span asp-validation-for="UslovnoeObozn" class="text-danger"></span>
+			</div>
+
+			<div class="form-floating">
+				<input class="form-control" asp-for="OkeiCode">
+				<label asp-for="OkeiCode">Код ОКЕИ</label>
+				<span asp-validation-for="OkeiCode" class="text-danger"></span>
+			</div>
+			<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesMeasureUnits" method="post">Сохранить</button>
+		</form>
+
+		<form class="p-5 d-grid gap-1" asp-controller="MeasureUnits" method="get">
+			<button class="btn btn-lg btn-warning" type="submit" asp-action="TMeasureUnits" method="get">Отмена</button>
+		</form>
+	</main>
+</body>
+
+

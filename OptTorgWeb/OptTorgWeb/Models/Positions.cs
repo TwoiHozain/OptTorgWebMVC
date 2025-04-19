@@ -11,5 +11,39 @@ public partial class Positions
 
     public string Name { get; set; }
 
+    public bool Active { get; set; }
+
     public virtual ICollection<Employees> Employees { get; set; } = new List<Employees>();
+
+    public static List<Positions> GetAllPositions()
+    {
+        var db = new OptTorgDBContext();
+        return db.Positions.Where(x => x.Active == true).ToList();   
+    }
+    public static void CreatrPosition(Positions p)
+    {
+        var db = new OptTorgDBContext();
+        p.Active = true;
+        db.Positions.Add(p);
+        db.SaveChanges();
+    }
+    public static Positions GetPositionById(int id)
+    {
+        var db = new OptTorgDBContext();
+        return db.Positions.Single(x => x.IdPositions == id);
+    }
+    public static void UpdatePosition(Positions p)
+    {
+        var db = new OptTorgDBContext();
+        db.Positions.Update(p);
+        db.SaveChanges();
+    }
+    public static void DeletePosition(int id) 
+    { 
+        var db = new OptTorgDBContext();
+        var pos = db.Positions.FirstOrDefault(x => x.IdPositions == id);
+        pos.Active = false;
+
+        db.SaveChanges();
+    }
 }

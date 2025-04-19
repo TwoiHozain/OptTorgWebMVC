@@ -1,0 +1,76 @@
+﻿@using OptTorgWebDB.Models
+@model IEnumerable<Positions>
+
+<!DOCTYPE html>
+
+<html>
+<body class="panel-body">
+	@{
+		@if (ViewBag.Type == 0)
+		{
+			<div class="alert alert-success alert-dismissible fade show m-1" role="alert">
+				@ViewBag.Message
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		}
+
+		@if (ViewBag.Type == 1)
+		{
+			<div class="alert alert-danger alert-dismissible fade show  m-1" role="alert">
+				@ViewBag.Message
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		}
+	}
+	<!-- Заголовок -->
+	<p class="fs-3 text-decoration-underline fw-bold m-1">Просмотреть</p>
+	<!-- Заголовок 2 -->
+	<p class="fs-4 text-decoration-underline m-1">Должности</p>
+
+	<!-- Кнопка -->
+	<a class="btn btn-success m-1" style="width:15%" asp-controller="Positions" asp-action="OpenCPositions">Создать</a>
+
+	<div class="table-responsive table-striped table-hover table-bordered">
+		<table class="table table-bordered table-striped table-hover caption-top">
+			
+			<!-- Шапка -->
+			<thead>
+				<tr>
+					<th>Ид</th>
+					<th>Наименование</th>
+					<th colspan="2" class="text-center">Действия</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var e in @Model)
+				{
+					<tr>
+						<td>@e.IdPositions</td>
+						<td>@e.Name</td>
+
+						<!-- Кнопки в таблице -->
+						<td style="width:1px; white-space:nowrap;">
+							<form asp-controller="Position" method="post">
+								<input type="hidden" name="Id"
+									   value="@e.IdPositions" />
+								<button type="submit" class="btn btn-warning" asp-action="OpenEPositions" method="post">
+									Редактировать
+								</button>
+							</form>
+						</td>
+						<td style="width:1px; white-space:nowrap;">
+							<form asp-controller="Position" method="post">
+								<input type="hidden" name="Id"
+									   value="@e.IdPositions" />
+								<button type="submit" class="btn btn-danger" asp-action="DPosition" method="post">
+									Удалить
+								</button>
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
