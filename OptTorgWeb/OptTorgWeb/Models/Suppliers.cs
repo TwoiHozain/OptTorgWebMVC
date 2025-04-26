@@ -36,6 +36,39 @@ public partial class Suppliers
     public string WebPage { get; set; }
 
     public int Inn { get; set; }
+    public bool Active { get; set; }
 
     public virtual ICollection<Buys> Buys { get; set; } = new List<Buys>();
+
+    public static List<Suppliers> GetAllSuppliers()
+    {
+        var db = new OptTorgDBContext();
+        return db.Suppliers.Where(x => x.Active == true).ToList();
+    }
+    public static void CreatrSuppliers(Suppliers p)
+    {
+        var db = new OptTorgDBContext();
+        p.Active = true;
+        db.Suppliers.Add(p);
+        db.SaveChanges();
+    }
+    public static Suppliers GetSuppliersById(int id)
+    {
+        var db = new OptTorgDBContext();
+        return db.Suppliers.Single(x => x.IdSuppliers == id);
+    }
+    public static void UpdateSuppliers(Suppliers p)
+    {
+        var db = new OptTorgDBContext();
+        db.Suppliers.Update(p);
+        db.SaveChanges();
+    }
+    public static void DeleteSuppliers(int id)
+    {
+        var db = new OptTorgDBContext();
+        var pos = db.Suppliers.FirstOrDefault(x => x.IdSuppliers == id);
+        pos.Active = false;
+
+        db.SaveChanges();
+    }
 }

@@ -14,16 +14,48 @@ public partial class Storages
     public string City { get; set; }
 
     public string Oblast { get; set; }
-
+    public string PostIndex { get; set; }
     public string State { get; set; }
 
     public int? Phone { get; set; }
 
     public int? Fax { get; set; }
+    public bool Active { get; set; }
 
     public virtual ICollection<Delivery> Delivery { get; set; } = new List<Delivery>();
 
     public virtual ICollection<Sending> Sending { get; set; } = new List<Sending>();
 
     public virtual ICollection<StorageEmployees> StorageEmployees { get; set; } = new List<StorageEmployees>();
+    public static List<Storages> GetAllStorages()
+    {
+        var db = new OptTorgDBContext();
+        return db.Storages.Where(x => x.Active == true).ToList();
+    }
+    public static void CreatrStorages(Storages p)
+    {
+        var db = new OptTorgDBContext();
+        p.Active = true;
+        db.Storages.Add(p);
+        db.SaveChanges();
+    }
+    public static Storages GetStoragesById(int id)
+    {
+        var db = new OptTorgDBContext();
+        return db.Storages.Single(x => x.IdStorages == id);
+    }
+    public static void UpdateStorages(Storages p)
+    {
+        var db = new OptTorgDBContext();
+        db.Storages.Update(p);
+        db.SaveChanges();
+    }
+    public static void DeleteStorages(int id)
+    {
+        var db = new OptTorgDBContext();
+        var pos = db.Storages.FirstOrDefault(x => x.IdStorages == id);
+        pos.Active = false;
+
+        db.SaveChanges();
+    }
 }

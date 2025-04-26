@@ -137,7 +137,7 @@
                     <li>
                         <a asp-controller="MeasureUnits" asp-action="TMeasureUnits">
                             <span class="glyphicon glyphicon-comment nb-link-icon"></span>
-                            <span class="nb-link-text">Должности</span>
+                            <span class="nb-link-text">Просмотреть</span>
                         </a>
                     </li>
 
@@ -189,7 +189,7 @@
                     <li>
                         <a asp-controller="Packaging" asp-action="TPackaging">
                             <span class="glyphicon glyphicon-comment nb-link-icon"></span>
-                            <span class="nb-link-text">Должности</span>
+                            <span class="nb-link-text">Просмотреть</span>
                         </a>
                     </li>
 
@@ -215,7 +215,7 @@
                     <li>
                         <a asp-controller="SendingStatus" asp-action="TSendingStatus">
                             <span class="glyphicon glyphicon-comment nb-link-icon"></span>
-                            <span class="nb-link-text">Должности</span>
+                            <span class="nb-link-text">Просмотреть</span>
                         </a>
                     </li>
 
@@ -236,7 +236,120 @@
         <!-- Section 1 "Middle"-->
         <p class="nb-nav-title">Средние таблицы</p>
         <ul class="nb-nav">
-            
+            <!-- Customers -->
+            <li class="dropdown">
+                <a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+                    <i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Клиенты</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+                    <li>
+                        <a asp-controller="Customers" asp-action="TCCustomers">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Телефонная книга</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="Customers" asp-action="TACustomers">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Адресная книга</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="Customers" asp-action="OpenCCustomers">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Создать</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Suppliers -->
+            <li class="dropdown">
+                <a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+                    <i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Поставщики</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+                    <li>
+                        <a asp-controller="Suppliers" asp-action="TCSuppliers">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Телефонная книга</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="Suppliers" asp-action="TASuppliers">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Адресная книга</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="Suppliers" asp-action="OpenCSuppliers">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Создать</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Storages -->
+            <li class="dropdown">
+                <a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+                    <i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Склады</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+                    <li>
+                        <a asp-controller="Storages" asp-action="TCStorages">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Телефонная книга</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="Storages" asp-action="TAStorages">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Адресная книга</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="Storages" asp-action="OpenCStorages">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Создать</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Pricing -->
+            <li class="dropdown">
+                <a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+                    <i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Расценки</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+                    <li>
+                        <a asp-controller="Pricing" asp-action="TPricing">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Просмотреть</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="Pricing" asp-action="OpenCPricing">
+                            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+                            <span class="nb-link-text">Создать</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
 
         <!-- Section 1 "Hard"-->
@@ -251,7 +364,6 @@
         </ul>
     </div> <!-- /.dash-navbar-left -->
 
-@* 
     <div class="content-wrap nb-visible" data-effect="nb-push">
         <div class="container-fluid">
             <div class="row">
@@ -264,13 +376,13 @@
                 <!-- End of your content -->
             </div>
         </div>
-    </div> <!-- /.content-wrap --> *@
+    </div> <!-- /.content-wrap -->
 
-    <div class="container">
+@*     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+    </div> *@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

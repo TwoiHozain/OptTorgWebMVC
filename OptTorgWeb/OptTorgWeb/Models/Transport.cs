@@ -26,25 +26,25 @@ public partial class Transport
         var db = new OptTorgDBContext();
         return db.Transport.Where(x => x.Active == true).ToList();
     }
-    public static void CreatrPosition(Transport p)
+    public static void CreatrTransport(Transport p)
     {
         var db = new OptTorgDBContext();
         p.Active = true;
         db.Transport.Add(p);
         db.SaveChanges();
     }
-    public static Transport GetPositionById(int id)
+    public static Transport GetTransportById(int id)
     {
         var db = new OptTorgDBContext();
         return db.Transport.Single(x => x.IdTransport == id);
     }
-    public static void UpdatePosition(Transport p)
+    public static void UpdateTransport(Transport p)
     {
         var db = new OptTorgDBContext();
         db.Transport.Update(p);
         db.SaveChanges();
     }
-    public static void DeletePosition(int id)
+    public static void DeleteTransport(int id)
     {
         var db = new OptTorgDBContext();
         var pos = db.Transport.FirstOrDefault(x => x.IdTransport == id);

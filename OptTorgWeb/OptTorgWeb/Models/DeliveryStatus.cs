@@ -31,18 +31,19 @@ public partial class DeliveryStatus
     public static DeliveryStatus GetPositionById(int id)
     {
         var db = new OptTorgDBContext();
-        return db.DeliveryStatus.Single(x => x.IdDeliveryStatus == id);
+        return db.DeliveryStatus.Single(x => x.IdDs == id);
     }
     public static void UpdatePosition(DeliveryStatus p)
     {
         var db = new OptTorgDBContext();
+        p.Active = true;
         db.DeliveryStatus.Update(p);
         db.SaveChanges();
     }
     public static void DeletePosition(int id)
     {
         var db = new OptTorgDBContext();
-        var pos = db.DeliveryStatus.FirstOrDefault(x => x.IdDeliveryStatus == id);
+        var pos = db.DeliveryStatus.FirstOrDefault(x => x.IdDs == id);
         pos.Active = false;
 
         db.SaveChanges();

@@ -26,7 +26,7 @@ namespace OptTorgWeb.Controllers
         [HttpPost]
         public IActionResult CMeasureUnits(MeasureUnits p)
         {
-            MeasureUnits.CreatrPosition(p);
+            MeasureUnits.CreatrMeasureUnits(p);
 
             ViewData["Message"] = "Запись успешно создана";
             ViewData["Type"] = 0;
@@ -37,7 +37,7 @@ namespace OptTorgWeb.Controllers
         [HttpPost]
         public IActionResult CFewMeasureUnits(MeasureUnits p)
         {
-            MeasureUnits.CreatrPosition(p);
+            MeasureUnits.CreatrMeasureUnits(p);
 
             ViewData["Message"] = "Запись успешно создана";
             ViewData["Type"] = 0;
@@ -50,7 +50,7 @@ namespace OptTorgWeb.Controllers
         [HttpPost]
         public IActionResult OpenEMeasureUnits(int id)
         {
-            return View(_EditForm, MeasureUnits.GetPositionById(id));
+            return View(_EditForm, MeasureUnits.GetMeasureUnitsById(id));
         }
 
         [HttpPost]
@@ -59,20 +59,20 @@ namespace OptTorgWeb.Controllers
             ViewData["Message"] = "Запись успешно изменена";
             ViewData["Type"] = 0;
 
-            MeasureUnits.UpdatePosition(p);
+            MeasureUnits.UpdateMeasureUnits(p);
 
             return View(_ViewForm, MeasureUnits.GetAllMeasureUnits());
         }
 
         ////Delete
         [HttpPost]
-        public IActionResult DPosition(int id)
+        public IActionResult DMeasureUnits(int id)
         {
-            MeasureUnits.DeletePosition(id);
+            MeasureUnits.DeleteMeasureUnits(id);
             return View(_ViewForm, MeasureUnits.GetAllMeasureUnits());
         }
         //ToDo
-        public IActionResult DCascadePosition(int id)
+        public IActionResult DCascadeMeasureUnits(int id)
         {
             return View("TMeasureUnits", MeasureUnits.GetAllMeasureUnits());
         }

@@ -26,7 +26,7 @@ namespace OptTorgWeb.Controllers
         [HttpPost]
         public IActionResult CTransport(Transport p)
         {
-            Transport.CreatrPosition(p);
+            Transport.CreatrTransport(p);
 
             ViewData["Message"] = "Запись успешно создана";
             ViewData["Type"] = 0;
@@ -37,7 +37,7 @@ namespace OptTorgWeb.Controllers
         [HttpPost]
         public IActionResult CFewTransport(Transport p)
         {
-            Transport.CreatrPosition(p);
+            Transport.CreatrTransport(p);
 
             ViewData["Message"] = "Запись успешно создана";
             ViewData["Type"] = 0;
@@ -50,7 +50,7 @@ namespace OptTorgWeb.Controllers
         [HttpPost]
         public IActionResult OpenETransport(int id)
         {
-            return View(_EditForm, Transport.GetPositionById(id));
+            return View(_EditForm, Transport.GetTransportById(id));
         }
 
         [HttpPost]
@@ -59,20 +59,20 @@ namespace OptTorgWeb.Controllers
             ViewData["Message"] = "Запись успешно изменена";
             ViewData["Type"] = 0;
 
-            Transport.UpdatePosition(p);
+            Transport.UpdateTransport(p);
 
             return View(_ViewForm, Transport.GetAllTransport());
         }
 
         ////Delete
         [HttpPost]
-        public IActionResult DPosition(int id)
+        public IActionResult DTransport(int id)
         {
-            Transport.DeletePosition(id);
+            Transport.DeleteTransport(id);
             return View(_ViewForm, Transport.GetAllTransport());
         }
         //ToDo
-        public IActionResult DCascadePosition(int id)
+        public IActionResult DCascadeTransport(int id)
         {
             return View("TMeasureUnits", Transport.GetAllTransport());
         }

@@ -31,9 +31,47 @@ public partial class Customers
 
     public int? Fax { get; set; }
 
-    public int Phone { get; set; }
+    public string Phone { get; set; }
 
     public int Inn { get; set; }
+    public bool Active { get; set; }
+    public string WebPage { get; set; }
 
     public virtual ICollection<Sending> Sending { get; set; } = new List<Sending>();
+
+    public static List<Customers> GetAllCustomers()
+    {
+        var db = new OptTorgDBContext();
+        return db.Customers.Where(x => x.Active == true).ToList();
+    }
+
+    public static void CreatrCustomers(Customers p)
+    {
+        var db = new OptTorgDBContext();
+        p.Active = true;
+        db.Customers.Add(p);
+        db.SaveChanges();
+    }
+
+    public static Customers GetCustomersById(int id)
+    {
+        var db = new OptTorgDBContext();
+        return db.Customers.Single(x => x.IdCustomers == id);
+    }
+
+    public static void UpdateCustomers(Customers p)
+    {
+        var db = new OptTorgDBContext();
+        db.Customers.Update(p);
+        db.SaveChanges();
+    }
+
+    public static void DeleteCustomers(int id)
+    {
+        var db = new OptTorgDBContext();
+        var pos = db.Customers.FirstOrDefault(x => x.IdCustomers == id);
+        pos.Active = false;
+
+        db.SaveChanges();
+    }
 }

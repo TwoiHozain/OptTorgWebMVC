@@ -36,6 +36,7 @@ public partial class Packaging
     public static void UpdatePackaging(Packaging p)
     {
         var db = new OptTorgDBContext();
+        p.Active = true;
         db.Packaging.Update(p);
         db.SaveChanges();
     }

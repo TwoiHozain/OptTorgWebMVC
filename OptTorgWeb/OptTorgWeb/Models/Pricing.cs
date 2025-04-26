@@ -29,5 +29,41 @@ public partial class Pricing
 
     public double Other { get; set; }
 
+    public bool Active { get; set; }
+
     public virtual ICollection<Sending> Sending { get; set; } = new List<Sending>();
+
+
+    public static List<Pricing> GetAllPricing()
+    {
+        var db = new OptTorgDBContext();
+        return db.Pricing.Where(x => x.Active == true).ToList();
+    }
+    public static void CreatrPricing(Pricing p)
+    {
+        var db = new OptTorgDBContext();
+        p.Active = true;
+        db.Pricing.Add(p);
+        db.SaveChanges();
+    }
+    public static Pricing GetPricingById(int id)
+    {
+        var db = new OptTorgDBContext();
+        return db.Pricing.Single(x => x.IdPricing == id);
+    }
+    public static void UpdatePricing(Pricing p)
+    {
+        var db = new OptTorgDBContext();
+        p.Active = true;
+        db.Pricing.Update(p);
+        db.SaveChanges();
+    }
+    public static void DeletePricing(int id)
+    {
+        var db = new OptTorgDBContext();
+        var pos = db.Pricing.FirstOrDefault(x => x.IdPricing == id);
+        pos.Active = false;
+
+        db.SaveChanges();
+    }
 }

@@ -1,0 +1,121 @@
+﻿@using OptTorgWebDB.Models
+@model Pricing
+
+<div class="position-relative">
+	<div class="w-50 position-absolute top-50 start-50 translate-middle-x">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline  fw-bold m-1">Изменить</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Расценку</p>
+
+		<form class="p-3 border" asp-controller="Pricing" asp-action="CPricing" method="post">
+			<div class="row">
+				<div class="col">
+					<div class="row pb-1">
+						<div class="form-floating">
+							<input class="form-control" asp-for="IdPricing" readonly>
+							<label asp-for="IdPricing">Ид</label>
+							<span asp-validation-for="IdPricing" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="form-floating">
+							<input class="form-control" asp-for="ForTonnes">
+							<label asp-for="ForTonnes">За тонны</label>
+							<span asp-validation-for="ForTonnes" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="form-floating">
+							<input class="form-control" asp-for="ForTonnesKm">
+							<label asp-for="ForTonnesKm">За тонны-км</label>
+							<span asp-validation-for="ForTonnesKm" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="form-floating">
+							<input class="form-control" asp-for="PogruzRazgruz">
+							<label asp-for="PogruzRazgruz">За погрузочно-разгрузочные работы</label>
+							<span asp-validation-for="PogruzRazgruz" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="form-floating">
+							<input class="form-control" asp-for="NedogruzAvto">
+							<label asp-for="NedogruzAvto">За недогруз авто</label>
+							<span asp-validation-for="NedogruzAvto" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="form-floating">
+							<input class="form-control" asp-for="Expedirovanie">
+							<label asp-for="Expedirovanie">За экспедирование</label>
+							<span asp-validation-for="Expedirovanie" class="text-danger"></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col">
+
+					<div class="row pb-1">
+						<div class="form-floating">
+							<input class="form-control" asp-for="DowntimeLoading">
+							<label asp-for="DowntimeLoading">За простой при погрузке</label>
+							<span asp-validation-for="DowntimeLoading" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="form-floating">
+							<input class="form-control" asp-for="DowntimeUnloading">
+							<label asp-for="DowntimeUnloading">За простой при разгрузке</label>
+							<span asp-validation-for="DowntimeUnloading" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="form-floating">
+							<input class="form-control" asp-for="ZaSrochnost">
+							<label asp-for="ZaSrochnost">За срочность</label>
+							<span asp-validation-for="ZaSrochnost" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="form-floating">
+							<input class="form-control" asp-for="ZaSpecTransport">
+							<label asp-for="ZaSpecTransport">За спец. транспорт</label>
+							<span asp-validation-for="ZaSpecTransport" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="form-floating">
+							<input class="form-control" asp-for="Other">
+							<label asp-for="Other">Прочее</label>
+							<span asp-validation-for="Other" class="text-danger"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesPricing" method="post">Создать</button>
+			</div>
+		</form>
+
+		<form class="p-5 d-grid gap-1" asp-controller="Pricing" method="get">
+			<div class="d-grid gap-2 col-5 mx-auto">
+
+				<button class="btn btn-lg btn-warning" type="submit" asp-action="TPricing" method="get">Отмена</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+

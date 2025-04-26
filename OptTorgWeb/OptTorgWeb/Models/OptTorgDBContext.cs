@@ -173,6 +173,10 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.Surname)
                 .IsRequired()
                 .HasColumnName("surname");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
+            entity.Property(e => e.WebPage).HasColumnName("web_page");
         });
 
         modelBuilder.Entity<Delivery>(entity =>
@@ -316,7 +320,7 @@ public partial class OptTorgDBContext : DbContext
             entity.ToTable("measure_units");
 
             entity.Property(e => e.IdMu)
-                .ValueGeneratedNever()
+                .UseIdentityAlwaysColumn()
                 .HasColumnName("id_mu");
             entity.Property(e => e.Active)
                 .HasDefaultValue(true)
@@ -385,6 +389,7 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.PogruzRazgruz).HasColumnName("pogruz_razgruz");
             entity.Property(e => e.ZaSpecTransport).HasColumnName("za_spec_transport");
             entity.Property(e => e.ZaSrochnost).HasColumnName("za_srochnost");
+            entity.Property(e => e.Active).HasDefaultValue(true).HasColumnName("active");
         });
 
         modelBuilder.Entity<ProductPart>(entity =>
@@ -652,6 +657,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.City)
                 .IsRequired()
                 .HasColumnName("city");
+            entity.Property(e => e.PostIndex)
+                .IsRequired()
+                .HasColumnName("post_index");
             entity.Property(e => e.Fax).HasColumnName("fax");
             entity.Property(e => e.Oblast)
                 .IsRequired()
@@ -660,6 +668,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.State)
                 .IsRequired()
                 .HasColumnName("state");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
         });
 
         modelBuilder.Entity<Suppliers>(entity =>
@@ -703,6 +714,9 @@ public partial class OptTorgDBContext : DbContext
                 .IsRequired()
                 .HasColumnName("surname");
             entity.Property(e => e.WebPage).HasColumnName("web_page");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
         });
 
         modelBuilder.Entity<Transport>(entity =>

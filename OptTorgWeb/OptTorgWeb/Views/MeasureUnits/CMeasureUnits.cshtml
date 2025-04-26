@@ -1,9 +1,9 @@
 ﻿@using OptTorgWebDB.Models
 @model MeasureUnits
 
-<body>
-	<main class="w-25 position-absolute top-50 start-50 translate-middle">
-		
+<div class="position-relative">
+	<div class="w-50 position-absolute top-50 start-50 translate-middle-x">
+
 		<!-- Заголовок -->
 		<p class="fs-3 text-decoration-underline fw-bold  m-1">Создать</p>
 		<!-- Заголовок 2 -->
@@ -28,13 +28,16 @@
 				<span asp-validation-for="OkeiCode" class="text-danger"></span>
 			</div>
 
-			<button class="btn btn-lg btn-success" type="submit" asp-action="CMeasureUnits" method="post">Сохранить</button>
-			<button class="btn btn-lg btn-success" type="submit" asp-action="CFewMeasureUnits" method="post">Сохранить и добавить еще</button>
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="CMeasureUnits" method="post">Сохранить</button>
+				<button class="btn btn-lg btn-success" type="submit" asp-action="CFewMeasureUnits" method="post">Сохранить и добавить еще</button>
+			</div>
 		</form>
 
 		<form class="p-5 border d-grid gap-1" asp-controller="MeasureUnits" method="get">
-			<button class="btn btn-lg btn-warning" type="submit" asp-action="TMeasureUnits">Отмена</button>
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-warning" type="submit" asp-action="TMeasureUnits">Отмена</button>
+			</div>
 		</form>
-	</main>
-</body>
-
+	</div>
+</div>

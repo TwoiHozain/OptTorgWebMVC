@@ -1,5 +1,5 @@
 ﻿@using OptTorgWebDB.Models
-@model IEnumerable<MeasureUnits>
+@model IEnumerable<Customers>
 
 <!DOCTYPE html>
 
@@ -25,21 +25,26 @@
 	<!-- Заголовок -->
 	<p class="fs-3 text-decoration-underline fw-bold m-1">Просмотреть</p>
 	<!-- Заголовок 2 -->
-	<p class="fs-4 text-decoration-underline m-1">Единицы измерения</p>
+	<p class="fs-4 text-decoration-underline m-1">Контакты клиентов</p>
 
 	<!-- Кнопка -->
-	<a class="btn btn-success m-1" style="width:15%" asp-controller="MeasureUnits" asp-action="OpenCMeasureUnits">Создать</a>
+	<a class="btn btn-success m-1" style="width:15%" asp-controller="Customers" asp-action="OpenCCustomers">Создать</a>
 
 	<div class="table-responsive table-striped table-hover table-bordered">
 		<table class="table table-bordered table-striped table-hover caption-top">
-			
-			<!-- Шапка -->
 			<thead>
 				<tr>
 					<th>Ид</th>
-					<th>Наименование</th>
-					<th>Условное обозначение</th>
-					<th>Код ОКЕИ</th>
+					<th>Организация</th>
+					<th>Фамилия</th>
+					<th>Имя</th>
+					<th>Отчество</th>
+					<th>Должность</th>
+					<th>Факс</th>
+					<th>Телфон</th>
+					<th>Веб-страница</th>
+					<th>ИНН</th>
+
 					<th colspan="2" class="text-center">Действия</th>
 				</tr>
 			</thead>
@@ -47,26 +52,32 @@
 				@foreach (var e in @Model)
 				{
 					<tr>
-						<td>@e.IdMu</td>
+						<td>@e.IdCustomers</td>
+						<td>@e.Company</td>
+						<td>@e.Surname</td>
 						<td>@e.Name</td>
-						<td>@e.UslovnoeObozn</td>
-						<td>@e.OkeiCode</td>
+						<td>@e.Patronomuc</td>
+						<td>@e.Position</td>
+						<td>@e.Fax</td>
+						<td>@e.Phone</td>
+						<td>@e.WebPage</td>
+						<td>@e.Inn</td>
 
 						<!-- Кнопки в таблице -->
 						<td style="width:1px; white-space:nowrap;">
-							<form asp-controller="MeasureUnits" method="post">
+							<form asp-controller="Customers" method="post">
 								<input type="hidden" name="Id"
-									   value="@e.IdMu" />
-								<button type="submit" class="btn btn-warning" asp-action="OpenEMeasureUnits" method="post">
-									Редактировать
+									   value="@e.IdCustomers" />
+								<button type="submit" class="btn btn-warning" asp-action="OpenECustomers" method="post">
+									Изменить
 								</button>
 							</form>
 						</td>
 						<td style="width:1px; white-space:nowrap;">
-							<form asp-controller="MeasureUnits" method="post">
+							<form asp-controller="Customers" method="post">
 								<input type="hidden" name="Id"
-									   value="@e.IdMu" />
-								<button type="submit" class="btn btn-danger" asp-action="DMeasureUnits" method="post">
+									   value="@e.IdCustomers" />
+								<button type="submit" class="btn btn-danger" asp-action="DCustomers" method="post">
 									Удалить
 								</button>
 							</form>

@@ -22,25 +22,27 @@ public partial class CountryOfProduct
         var db = new OptTorgDBContext();
         return db.CountryOfProduct.Where(x => x.Active == true).ToList();
     }
-    public static void CreatrPosition(CountryOfProduct p)
+    public static void CreatrCountryOfProduct(CountryOfProduct p)
     {
         var db = new OptTorgDBContext();
         p.Active = true;
         db.CountryOfProduct.Add(p);
         db.SaveChanges();
     }
-    public static CountryOfProduct GetPositionById(int id)
+    public static CountryOfProduct GetCountryOfProductById(int id)
     {
         var db = new OptTorgDBContext();
-        return db.CountryOfProduct.Single(x => x.IdCof == id);
+        CountryOfProduct c = db.CountryOfProduct.Single(x => x.IdCof == id);
+        return c;
     }
-    public static void UpdatePosition(CountryOfProduct p)
+    public static void UpdateCountryOfProduct(CountryOfProduct p)
     {
         var db = new OptTorgDBContext();
+        p.Active = true;
         db.CountryOfProduct.Update(p);
         db.SaveChanges();
     }
-    public static void DeletePosition(int id)
+    public static void DeleteCountryOfProduct(int id)
     {
         var db = new OptTorgDBContext();
         var pos = db.CountryOfProduct.FirstOrDefault(x => x.IdCof == id);

@@ -26,7 +26,7 @@ namespace OptTorgWeb.Controllers
         [HttpPost]
         public IActionResult CCountryOfProduct(CountryOfProduct p)
         {
-            CountryOfProduct.CreatrPosition(p);
+            CountryOfProduct.CreatrCountryOfProduct(p);
 
             ViewData["Message"] = "Запись успешно создана";
             ViewData["Type"] = 0;
@@ -37,7 +37,7 @@ namespace OptTorgWeb.Controllers
         [HttpPost]
         public IActionResult CFewCountryOfProduct(CountryOfProduct p)
         {
-            CountryOfProduct.CreatrPosition(p);
+            CountryOfProduct.CreatrCountryOfProduct(p);
 
             ViewData["Message"] = "Запись успешно создана";
             ViewData["Type"] = 0;
@@ -46,11 +46,12 @@ namespace OptTorgWeb.Controllers
 
             return View(_CreateForm);
         }
+
         //Edit
         [HttpPost]
         public IActionResult OpenECountryOfProduct(int id)
         {
-            return View(_EditForm, CountryOfProduct.GetPositionById(id));
+            return View(_EditForm, CountryOfProduct.GetCountryOfProductById(id));
         }
 
         [HttpPost]
@@ -59,20 +60,20 @@ namespace OptTorgWeb.Controllers
             ViewData["Message"] = "Запись успешно изменена";
             ViewData["Type"] = 0;
 
-            CountryOfProduct.UpdatePosition(p);
+            CountryOfProduct.UpdateCountryOfProduct(p);
 
             return View(_ViewForm, CountryOfProduct.GetAllCountryOfProduct());
         }
 
         ////Delete
         [HttpPost]
-        public IActionResult DPosition(int id)
+        public IActionResult DCountryOfProduct(int id)
         {
-            CountryOfProduct.DeletePosition(id);
+            CountryOfProduct.DeleteCountryOfProduct(id);
             return View(_ViewForm, CountryOfProduct.GetAllCountryOfProduct());
         }
         //ToDo
-        public IActionResult DCascadePosition(int id)
+        public IActionResult DCascadeCountryOfProduct(int id)
         {
             return View("TMeasureUnits", CountryOfProduct.GetAllCountryOfProduct());
         }

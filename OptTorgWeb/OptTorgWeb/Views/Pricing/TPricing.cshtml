@@ -1,5 +1,5 @@
 ﻿@using OptTorgWebDB.Models
-@model IEnumerable<MeasureUnits>
+@model IEnumerable<Pricing>
 
 <!DOCTYPE html>
 
@@ -25,21 +25,27 @@
 	<!-- Заголовок -->
 	<p class="fs-3 text-decoration-underline fw-bold m-1">Просмотреть</p>
 	<!-- Заголовок 2 -->
-	<p class="fs-4 text-decoration-underline m-1">Единицы измерения</p>
+	<p class="fs-4 text-decoration-underline m-1">Расценки</p>
 
 	<!-- Кнопка -->
-	<a class="btn btn-success m-1" style="width:15%" asp-controller="MeasureUnits" asp-action="OpenCMeasureUnits">Создать</a>
+	<a class="btn btn-success m-1" style="width:15%" asp-controller="Pricing" asp-action="OpenCPricing">Создать</a>
 
 	<div class="table-responsive table-striped table-hover table-bordered">
 		<table class="table table-bordered table-striped table-hover caption-top">
-			
-			<!-- Шапка -->
 			<thead>
 				<tr>
 					<th>Ид</th>
-					<th>Наименование</th>
-					<th>Условное обозначение</th>
-					<th>Код ОКЕИ</th>
+					<th>За тонны</th>
+					<th>За тонны-км</th>
+					<th>За погрузочно-разгрузочные работы</th>
+					<th>За недогруз авто</th>
+					<th>За экспедирование</th>
+					<th>За простой при погрузке</th>
+					<th>За простой при разгрузке</th>
+					<th>За срочность</th>
+					<th>За спец. транспорт</th>
+					<th>Прочее</th>
+
 					<th colspan="2" class="text-center">Действия</th>
 				</tr>
 			</thead>
@@ -47,26 +53,33 @@
 				@foreach (var e in @Model)
 				{
 					<tr>
-						<td>@e.IdMu</td>
-						<td>@e.Name</td>
-						<td>@e.UslovnoeObozn</td>
-						<td>@e.OkeiCode</td>
+						<td>@e.IdPricing</td>
+						<td>@e.ForTonnes</td>
+						<td>@e.ForTonnesKm</td>
+						<td>@e.PogruzRazgruz</td>
+						<td>@e.NedogruzAvto</td>
+						<td>@e.Expedirovanie</td>
+						<td>@e.DowntimeLoading</td>
+						<td>@e.DowntimeUnloading</td>
+						<td>@e.ZaSrochnost</td>
+						<td>@e.ZaSpecTransport</td>
+						<td>@e.Other</td>
 
 						<!-- Кнопки в таблице -->
 						<td style="width:1px; white-space:nowrap;">
-							<form asp-controller="MeasureUnits" method="post">
+							<form asp-controller="Pricing" method="post">
 								<input type="hidden" name="Id"
-									   value="@e.IdMu" />
-								<button type="submit" class="btn btn-warning" asp-action="OpenEMeasureUnits" method="post">
-									Редактировать
+									   value="@e.IdPricing" />
+								<button type="submit" class="btn btn-warning" asp-action="OpenEPricing" method="post">
+									Изменить
 								</button>
 							</form>
 						</td>
 						<td style="width:1px; white-space:nowrap;">
-							<form asp-controller="MeasureUnits" method="post">
+							<form asp-controller="Pricing" method="post">
 								<input type="hidden" name="Id"
-									   value="@e.IdMu" />
-								<button type="submit" class="btn btn-danger" asp-action="DMeasureUnits" method="post">
+									   value="@e.IdPricing" />
+								<button type="submit" class="btn btn-danger" asp-action="DPricing" method="post">
 									Удалить
 								</button>
 							</form>

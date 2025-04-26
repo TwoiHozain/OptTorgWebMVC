@@ -36,6 +36,7 @@ public partial class Employees
     public int Inn { get; set; }
 
     public string PassWord { get; set; }
+    public bool Active { get; set; }
 
     public virtual ICollection<Delivery> DeliveryEmployeeAccept { get; set; } = new List<Delivery>();
 

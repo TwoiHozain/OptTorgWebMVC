@@ -35,6 +35,7 @@ public partial class Positions
     public static void UpdatePosition(Positions p)
     {
         var db = new OptTorgDBContext();
+        p.Active = true;
         db.Positions.Update(p);
         db.SaveChanges();
     }

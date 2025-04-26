@@ -25,25 +25,26 @@ public partial class MeasureUnits
         var db = new OptTorgDBContext();
         return db.MeasureUnits.Where(x => x.Active == true).ToList();
     }
-    public static void CreatrPosition(MeasureUnits p)
+    public static void CreatrMeasureUnits(MeasureUnits p)
     {
         var db = new OptTorgDBContext();
         p.Active = true;
         db.MeasureUnits.Add(p);
         db.SaveChanges();
     }
-    public static MeasureUnits GetPositionById(int id)
+    public static MeasureUnits GetMeasureUnitsById(int id)
     {
         var db = new OptTorgDBContext();
         return db.MeasureUnits.Single(x => x.IdMu == id);
     }
-    public static void UpdatePosition(MeasureUnits p)
+    public static void UpdateMeasureUnits(MeasureUnits p)
     {
         var db = new OptTorgDBContext();
+        p.Active = true;
         db.MeasureUnits.Update(p);
         db.SaveChanges();
     }
-    public static void DeletePosition(int id)
+    public static void DeleteMeasureUnits(int id)
     {
         var db = new OptTorgDBContext();
         var pos = db.MeasureUnits.FirstOrDefault(x => x.IdMu == id);

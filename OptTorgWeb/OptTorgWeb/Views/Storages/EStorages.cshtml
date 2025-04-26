@@ -1,0 +1,108 @@
+﻿@using OptTorgWebDB.Models
+@model Storages
+
+<body class="text-center">
+	<main class="w-75 position-absolute top-50 start-50 translate-middle">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline  fw-bold m-1">Изменить</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Склад</p>
+
+		<form class="p-3 border" asp-controller="Storages" asp-action="CStorages" method="post">
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Расположение</p>
+					<div class="row pb-1">
+						<div class="col-1">
+							<div class="form-floating">
+								<input class="form-control" asp-for="IdStorages" readonly>
+								<label asp-for="IdStorages">Ид</label>
+								<span asp-validation-for="IdStorages" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="State">
+								<label asp-for="State">Страна</label>
+								<span asp-validation-for="State" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Oblast">
+								<label asp-for="Oblast">Область</label>
+								<span asp-validation-for="Oblast" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="City">
+								<label asp-for="City">Город</label>
+								<span asp-validation-for="City" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Adress">
+								<label asp-for="Adress">Адрес</label>
+								<span asp-validation-for="Adress" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="col-2">
+							<div class="form-floating">
+								<input class="form-control" asp-for="PostIndex">
+								<label asp-for="PostIndex">Индекс</label>
+								<span asp-validation-for="PostIndex" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col col-lg-3">
+					<p class="fs-5 text-decoration-underline">Контакты</p>
+					<div class="row">
+						<div class="col pb-1">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Phone">
+								<label asp-for="Phone">Телефон</label>
+								<span asp-validation-for="Phone" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Fax">
+								<label asp-for="Fax">Факс</label>
+								<span asp-validation-for="Fax" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col m-1">
+					<button class="btn btn-lg btn-success w-25" type="submit" asp-action="SaveChangesStorages" method="post">Создать</button>
+				</div>
+			</div>
+		</form>
+
+		<form class="p-1 d-grid gap-1" asp-controller="Storages" method="get">
+			<div class="row">
+				<div class="col m-1">
+					<button class="btn btn-lg btn-warning w-25" type="submit" asp-action="TStorages">Отмена</button>
+				</div>
+			</div>
+		</form>
+	</main>
+</body>
+
+
