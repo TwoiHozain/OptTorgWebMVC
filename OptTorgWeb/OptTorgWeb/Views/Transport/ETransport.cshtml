@@ -1,8 +1,8 @@
 ﻿@using OptTorgWebDB.Models
 @model Transport
 
-<body class="text-center">
-	<main class="w-25 position-absolute top-50 start-50 translate-middle">
+<div class="position-relative">
+	<div class="w-75 position-absolute top-50 start-50 translate-middle-x">
 		<!-- Заголовок -->
 		<p class="fs-3 text-decoration-underline  fw-bold m-1">Редактировать</p>
 		<!-- Заголовок 2 -->
@@ -32,13 +32,18 @@
 				<label asp-for="Tonnage">Тоннаж</label>
 				<span asp-validation-for="Tonnage" class="text-danger"></span>
 			</div>
-			<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesTransport" method="post">Сохранить</button>
+
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesTransport" method="post">Сохранить</button>
+			</div>
 		</form>
 
 		<form class="p-5 d-grid gap-1" asp-controller="Transport" method="get">
-			<button class="btn btn-lg btn-warning" type="submit" asp-action="TTransport" method="get">Отмена</button>
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-warning" type="submit" asp-action="TTransport" method="get">Отмена</button>
+			</div>
 		</form>
-	</main>
-</body>
+	</div>
+</div>
 
 

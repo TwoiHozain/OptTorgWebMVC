@@ -36,6 +36,7 @@ public partial class SendingStatus
     public static void UpdateSendingStatus(SendingStatus p)
     {
         var db = new OptTorgDBContext();
+        p.Active = true;
         db.SendingStatus.Update(p);
         db.SaveChanges();
     }

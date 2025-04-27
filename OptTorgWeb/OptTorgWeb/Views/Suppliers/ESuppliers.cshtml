@@ -1,8 +1,8 @@
 ﻿@using OptTorgWebDB.Models
 @model Suppliers
 
-<body class="text-center">
-	<main class="w-75 position-absolute top-50 start-50 translate-middle">
+<div class="position-relative">
+	<div class="w-75 position-absolute top-50 start-50 translate-middle-x">
 		<!-- Заголовок -->
 		<p class="fs-3 text-decoration-underline  fw-bold m-1">Изменить</p>
 		<!-- Заголовок 2 -->
@@ -51,6 +51,14 @@
 								<input class="form-control" asp-for="PostIndex">
 								<label asp-for="PostIndex">Индекс</label>
 								<span asp-validation-for="PostIndex" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="col-2">
+							<div class="form-floating">
+								<input class="form-control" asp-for="IdSuppliers" readonly>
+								<label asp-for="IdSuppliers">Ид</label>
+								<span asp-validation-for="IdSuppliers" class="text-danger"></span>
 							</div>
 						</div>
 					</div>
@@ -140,24 +148,30 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="row">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="WebPage">
+								<label asp-for="WebPage">Веб-сайт</label>
+								<span asp-validation-for="WebPage" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col m-1">
-					<button class="btn btn-lg btn-success w-25" type="submit" asp-action="SaveChangesSuppliers" method="post">Создать</button>
-				</div>
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesSuppliers" method="post">Сохранить</button>
 			</div>
 		</form>
 
 		<form class="p-1 d-grid gap-1" asp-controller="Suppliers" method="get">
-			<div class="row">
-				<div class="col m-1">
-					<button class="btn btn-lg btn-warning w-25" type="submit" asp-action="Index">Отмена</button>
-				</div>
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-warning" type="submit" asp-action="Index">Отмена</button>
 			</div>
 		</form>
-	</main>
-</body>
+	</div>
+</div>
 
 

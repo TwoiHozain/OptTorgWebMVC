@@ -1,11 +1,11 @@
 ﻿@using OptTorgWebDB.Models
 @model ProductSort
 
-<body>
-	<main class="w-25 position-absolute top-50 start-50 translate-middle">
-		
+<div class="position-relative">
+	<div class="w-50 position-absolute top-50 start-50 translate-middle-x">
+
 		<!-- Заголовок -->
-		<p class="fs-3 text-decoration-underline fw-bold  m-1">Создать</p>
+		<p class="fs-3 text-decoration-underline fw-bold  m-1">Добавить</p>
 		<!-- Заголовок 2 -->
 		<p class="fs-4 text-decoration-underline m-1">Сорт товара</p>
 
@@ -17,13 +17,17 @@
 				<span asp-validation-for="SortName" class="text-danger"></span>
 			</div>
 
-			<button class="btn btn-lg btn-success" type="submit" asp-action="CProductSort" method="post">Сохранить</button>
-			<button class="btn btn-lg btn-success" type="submit" asp-action="CFewProductSort" method="post">Сохранить и добавить еще</button>
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="CProductSort" method="post">Сохранить</button>
+				<button class="btn btn-lg btn-success" type="submit" asp-action="CFewProductSort" method="post">Сохранить и добавить еще</button>
+			</div>
 		</form>
 
 		<form class="p-5 border d-grid gap-1" asp-controller="ProductSort" method="get">
-			<button class="btn btn-lg btn-warning" type="submit" asp-action="TProductSort">Отмена</button>
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-warning" type="submit" asp-action="TProductSort">Отмена</button>
+			</div>
 		</form>
-	</main>
-</body>
+	</div>
+</div>
 

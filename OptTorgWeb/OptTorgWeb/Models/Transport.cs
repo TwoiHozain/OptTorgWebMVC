@@ -41,6 +41,7 @@ public partial class Transport
     public static void UpdateTransport(Transport p)
     {
         var db = new OptTorgDBContext();
+        p.Active = true;
         db.Transport.Update(p);
         db.SaveChanges();
     }

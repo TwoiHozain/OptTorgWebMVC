@@ -1,8 +1,8 @@
 ﻿@using OptTorgWebDB.Models
 @model Storages
 
-<body class="text-center">
-	<main class="w-75 position-absolute top-50 start-50 translate-middle">
+<div class="position-relative">
+	<div class="w-75 position-absolute top-50 start-50 translate-middle-x">
 		<!-- Заголовок -->
 		<p class="fs-3 text-decoration-underline  fw-bold m-1">Изменить</p>
 		<!-- Заголовок 2 -->
@@ -89,20 +89,20 @@
 			</div>
 
 			<div class="row">
-				<div class="col m-1">
-					<button class="btn btn-lg btn-success w-25" type="submit" asp-action="SaveChangesStorages" method="post">Создать</button>
+				<div class="d-grid gap-2 col-5 mx-auto">
+					<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesStorages" method="post">Создать</button>
 				</div>
 			</div>
 		</form>
 
 		<form class="p-1 d-grid gap-1" asp-controller="Storages" method="get">
 			<div class="row">
-				<div class="col m-1">
-					<button class="btn btn-lg btn-warning w-25" type="submit" asp-action="TStorages">Отмена</button>
+				<div class="d-grid gap-2 col-5 mx-auto">
+					<button class="btn btn-lg btn-warning" type="submit" asp-action="TStorages">Отмена</button>
 				</div>
 			</div>
 		</form>
-	</main>
-</body>
+	</div>
+</div>
 
 

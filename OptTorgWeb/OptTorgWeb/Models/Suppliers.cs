@@ -31,7 +31,7 @@ public partial class Suppliers
 
     public int? Fax { get; set; }
 
-    public int Phone { get; set; }
+    public string Phone { get; set; }
 
     public string WebPage { get; set; }
 
@@ -60,6 +60,7 @@ public partial class Suppliers
     public static void UpdateSuppliers(Suppliers p)
     {
         var db = new OptTorgDBContext();
+        p.Active = true;
         db.Suppliers.Update(p);
         db.SaveChanges();
     }

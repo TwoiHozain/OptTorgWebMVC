@@ -36,6 +36,7 @@ public partial class ProductSort
     public static void UpdateProductSort(ProductSort p)
     {
         var db = new OptTorgDBContext();
+        p.Active = true;
         db.ProductSort.Update(p);
         db.SaveChanges();
     }

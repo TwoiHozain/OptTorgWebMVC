@@ -17,7 +17,7 @@ public partial class Storages
     public string PostIndex { get; set; }
     public string State { get; set; }
 
-    public int? Phone { get; set; }
+    public string? Phone { get; set; }
 
     public int? Fax { get; set; }
     public bool Active { get; set; }
@@ -47,6 +47,7 @@ public partial class Storages
     public static void UpdateStorages(Storages p)
     {
         var db = new OptTorgDBContext();
+        p.Active = true;
         db.Storages.Update(p);
         db.SaveChanges();
     }
