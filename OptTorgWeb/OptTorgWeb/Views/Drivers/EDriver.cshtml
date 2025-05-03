@@ -1,0 +1,75 @@
+﻿@using OptTorgWebDB.Models
+@model Drivers
+
+<div class="position-relative">
+	<div class="w-50 position-absolute top-50 start-50 translate-middle-x">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline fw-bold  m-1">Редактировать</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Водителя</p>
+
+		<form class="p-3 border" asp-controller="Drivers" asp-action="SaveChangesDrivers" method="post">
+			@Html.HiddenFor(model => model.IdDrivers)
+			@Html.HiddenFor(model => model.SeId)
+
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Сотрудник</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="SeNavigation.EmployeeNavigation.Surname" readonly>
+								<label asp-for="SeNavigation.EmployeeNavigation.Surname">Фамилия</label>
+								<span asp-validation-for="SeNavigation.EmployeeNavigation.Surname" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="SeNavigation.EmployeeNavigation.Name" readonly>
+								<label asp-for="SeNavigation.EmployeeNavigation.Name">Фамилия</label>
+								<span asp-validation-for="SeNavigation.EmployeeNavigation.Name" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="SeNavigation.EmployeeNavigation.Patronomic" readonly>
+								<label asp-for="SeNavigation.EmployeeNavigation.Patronomic">Отчество</label>
+								<span asp-validation-for="SeNavigation.EmployeeNavigation.Patronomic" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Лицензия</p>
+					<div class="row">
+						<div class="col pb-1">
+							<div class="form-floating">
+								<input class="form-control" asp-for="License">
+								<label asp-for="License">Лицензия</label>
+								<span asp-validation-for="License" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesDrivers" method="post">Сохранить</button>
+			</div>
+		</form>
+
+		<form class="p-1 d-grid gap-1" asp-controller="Drivers" method="get">
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-warning" type="submit" asp-action="TDrivers">Отмена</button>
+			</div>
+		</form>
+	</div>
+</div>
+

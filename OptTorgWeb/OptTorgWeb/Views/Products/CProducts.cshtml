@@ -1,0 +1,213 @@
+﻿@using OptTorgWebDB.Models
+@model Products
+
+<div class="position-relative">
+	<div class="w-100 position-absolute top-50 start-50 translate-middle-x">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline fw-bold  m-1">Добавить</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Товар</p>
+
+		<form class="p-3 border" asp-controller="Products" asp-action="CProducts" method="post">
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Характеристики</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<label class="dropdown-header p-1" asp-for="CountryId">Страна</label>
+								<select class="form-select" aria-label="Default select example" asp-for="CountryId">
+									@foreach (CountryOfProduct c in CountryOfProduct.GetAllCountryOfProduct())
+									{
+										<option value="@c.IdCof">@c.ShortName</option>
+									}
+								</select>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="form-floating">
+								<label class="dropdown-header p-1" asp-for="MuId">Единицы измерения</label>
+								<select class="form-select" aria-label="Default select example" asp-for="MuId">
+									@foreach (MeasureUnits m in MeasureUnits.GetAllMeasureUnits())
+									{
+										<option value="@m.IdMu">@m.Name</option>
+									}
+								</select>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="form-floating">
+								<label class="dropdown-header p-1" asp-for="PackingId">Тип упаковки</label>
+								<select class="form-select" aria-label="Default select example" asp-for="PackingId">
+									@foreach (Packaging p in Packaging.GetAllPackaging())
+									{
+										<option value="@p.IdPackaging">@p.Type</option>
+									}
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="ProductName">
+								<label asp-for="ProductName">Наименование</label>
+								<span asp-validation-for="ProductName" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="ProductCode">
+								<label asp-for="ProductCode">Код товара</label>
+								<span asp-validation-for="ProductCode" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="ProductArticle">
+								<label asp-for="ProductArticle">Артикул</label>
+								<span asp-validation-for="ProductArticle" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<label class="dropdown-header p-1" asp-for="SortId">Сорт</label>
+								<select class="form-select" aria-label="Default select example" asp-for="SortId">
+									@foreach (ProductSort s in ProductSort.GetAllProductSort())
+									{
+										<option value="@s.IdPs">@s.SortName</option>
+									}
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Horactiristics">
+								<label asp-for="Horactiristics">Характеристики</label>
+								<span asp-validation-for="Horactiristics" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col col-3">
+					<p class="fs-5 text-decoration-underline">Цена</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="PricePerPiece">
+								<label asp-for="PricePerPiece">Цена за место/шт.</label>
+								<span asp-validation-for="PricePerPiece" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="PricePerPieceNoNds">
+								<label asp-for="PricePerPieceNoNds">Цена за место/шт. без ндс</label>
+								<span asp-validation-for="PricePerPieceNoNds" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Nds">
+								<label asp-for="Nds">Ставка ндс</label>
+								<span asp-validation-for="Nds" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="TariffPerPiece">
+								<label asp-for="TariffPerPiece">Тариф</label>
+								<span asp-validation-for="TariffPerPiece" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="ExciseTaxe">
+								<label asp-for="ExciseTaxe">Акциз</label>
+								<span asp-validation-for="ExciseTaxe" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col col-3">
+					<p class="fs-5 text-decoration-underline">Масса</p>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="CountPerPlase">
+								<label asp-for="CountPerPlase">Количество в одном месте/шт.</label>
+								<span asp-validation-for="CountPerPlase" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="MassPerPlase">
+								<label asp-for="MassPerPlase">Масса одного места/шт.</label>
+								<span asp-validation-for="MassPerPlase" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="MassNetto">
+								<label asp-for="MassNetto">Масса нетто</label>
+								<span asp-validation-for="MassNetto" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="MassPrutto">
+								<label asp-for="MassPrutto">Масса брутто</label>
+								<span asp-validation-for="MassPrutto" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="CProducts" method="post">Создать</button>
+			</div>
+		</form>
+
+		<form class="p-1 d-grid gap-1" asp-controller="Products" method="get">
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-warning" type="submit" asp-action="TGeneralProducts">Отмена</button>
+			</div>
+		</form>
+	</div>
+</div>
+

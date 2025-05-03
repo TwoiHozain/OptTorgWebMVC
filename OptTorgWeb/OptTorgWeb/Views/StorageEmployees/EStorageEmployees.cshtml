@@ -1,0 +1,201 @@
+﻿@using OptTorgWebDB.Models
+@model StorageEmployees
+
+<div class="position-relative">
+	<div class="w-75 position-absolute top-50 start-50 translate-middle-x">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline  fw-bold m-1">Изменить</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Данные сотрудника</p>
+
+		<form class="p-3 border" asp-controller="Employees" asp-action="CEmployees" method="post">
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Адрес</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="@Model.EmployeeNavigation.State">
+								<label asp-for="@Model.EmployeeNavigation.State">Страна</label>
+								<span asp-validation-for="@Model.EmployeeNavigation.State" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="@Model.EmployeeNavigation.Oblast">
+								<label asp-for="@Model.EmployeeNavigation.Oblast">Область</label>
+								<span asp-validation-for="@Model.EmployeeNavigation.Oblast" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="@Model.EmployeeNavigation.City">
+								<label asp-for="@Model.EmployeeNavigation.City">Город</label>
+								<span asp-validation-for="@Model.EmployeeNavigation.City" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="@Model.EmployeeNavigation.Adress">
+								<label asp-for="@Model.EmployeeNavigation.Adress">Адрес</label>
+								<span asp-validation-for="@Model.EmployeeNavigation.Adress" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="col-2">
+							<div class="form-floating">
+								<input class="form-control" asp-for="@Model.EmployeeNavigation.PostIndex">
+								<label asp-for="@Model.EmployeeNavigation.PostIndex">Индекс</label>
+								<span asp-validation-for="@Model.EmployeeNavigation.PostIndex" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col col-lg-3">
+					<p class="fs-5 text-decoration-underline">Контактное лицо</p>
+					<div class="row">
+						<div class="col pb-1">
+							<div class="form-floating">
+								<input class="form-control" asp-for="IdSe" readonly>
+								<label asp-for="IdSe">Ид сотрудника склада</label>
+								<span asp-validation-for="IdSe" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col pb-1">
+							<div class="form-floating">
+								<input class="form-control" asp-for="@Model.EmployeeNavigation.IdEmployees" readonly>
+								<label asp-for="@Model.EmployeeNavigation.IdEmployees">Ид</label>
+								<span asp-validation-for="@Model.EmployeeNavigation.IdEmployees" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col pb-1">
+							<div class="form-floating">
+								<input class="form-control" asp-for="@Model.EmployeeNavigation.Surname">
+								<label asp-for="@Model.EmployeeNavigation.Surname">Фамилия</label>
+								<span asp-validation-for="@Model.EmployeeNavigation.Surname" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col pb-1">
+							<div class="form-floating">
+								<input class="form-control" asp-for="@Model.EmployeeNavigation.Name">
+								<label asp-for="@Model.EmployeeNavigation.Name">Имя</label>
+								<span asp-validation-for="@Model.EmployeeNavigation.Name" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="@Model.EmployeeNavigation.Patronomic">
+								<label asp-for="@Model.EmployeeNavigation.Patronomic">Отчество</label>
+								<span asp-validation-for="@Model.EmployeeNavigation.Patronomic" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-floating">
+							<label class="dropdown-header" asp-for="@Model.EmployeeNavigation.PositionId">Должность</label>
+							<select class="form-select m-1" aria-label="Default select example" asp-for="@Model.EmployeeNavigation.PositionId">
+								@foreach (Positions p in Positions.GetAllPositions())
+								{
+									<option value="@p.IdPositions">@p.Name</option>
+								}
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="col col-lg-3">
+					<p class="fs-5 text-decoration-underline">Контакты</p>
+
+					<div class="row">
+						<div class="col pb-1">
+							<div class="form-floating">
+								<input class="form-control" asp-for="@Model.EmployeeNavigation.WorkPhone">
+								<label asp-for="@Model.EmployeeNavigation.WorkPhone">Рабочий телефон</label>
+								<span asp-validation-for="@Model.EmployeeNavigation.WorkPhone" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="@Model.EmployeeNavigation.Email">
+								<label asp-for="@Model.EmployeeNavigation.Email">Эл. почта</label>
+								<span asp-validation-for="@Model.EmployeeNavigation.Email" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="@Model.EmployeeNavigation.Inn">
+								<label asp-for="@Model.EmployeeNavigation.Inn">ИНН</label>
+								<span asp-validation-for="@Model.EmployeeNavigation.Inn" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="form-floating">
+						<label class="dropdown-header" asp-for="StorageId">Склад</label>
+						<select class="form-select pb-1" aria-label="Default select example" asp-for="StorageId">
+							@foreach (Storages s in Storages.GetAllStorages())
+							{
+								if (Model.StorageId == @s.IdStorages)
+								{
+									<option value="@s.IdStorages" selected>@s.IdStorages | @s.Adress</option>
+								}
+								else
+								{
+									<option value="@s.IdStorages">@s.IdStorages | @s.Adress</option>
+								}
+							}
+						</select>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col pb-1">
+						<div class="form-floating">
+							<input type="hidden" class="form-control" asp-for="@Model.EmployeeNavigation.PassWord" value="@Model.EmployeeNavigation.PassWord">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesStorageEmployees" method="post">Создать</button>
+			</div>
+		</form>
+
+		<form class="p-1 d-grid gap-1" asp-controller="Buys" method="get">
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-warning" type="submit" asp-action="TStorageEmployees">Отмена</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+

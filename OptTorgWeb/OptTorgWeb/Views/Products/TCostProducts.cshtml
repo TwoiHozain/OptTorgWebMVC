@@ -1,0 +1,93 @@
+﻿@using OptTorgWebDB.Models
+@model IEnumerable<Products>
+
+<div class="position-relative">
+	<div class="w-100 position-absolute top-50 start-50 translate-middle-x">
+		@{
+			@if (ViewBag.Type == 0)
+			{
+				<div class="alert alert-success alert-dismissible fade show m-1" role="alert">
+					@ViewBag.Message
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			}
+
+			@if (ViewBag.Type == 1)
+			{
+				<div class="alert alert-danger alert-dismissible fade show  m-1" role="alert">
+					@ViewBag.Message
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			}
+		}
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline fw-bold m-1">Просмотреть</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Цены товаров</p>
+
+		<!-- Кнопка -->
+		<a class="btn btn-success m-1" style="width:15%" asp-controller="Products" asp-action="OpenCProducts">Создать</a>
+
+		<div class="table-responsive table-striped table-hover table-bordered">
+			<table class="table table-bordered table-striped table-hover caption-top">
+				<thead>
+					<tr>
+						<th>Ид</th>
+						<th>Наименование</th>
+						<th>Код товара</th>
+						<th>Единицы измерения</th>
+						<th>Страна</th>
+						<th>Цена за место/шт.</th>
+						<th>Цена за место/шт. без НДС</th>
+						<th>Количество в одном месте</th>
+						<th>Цена без НДС</th>
+						<th>НДС</th>
+						<th>Цена за единицу(тариф)</th>
+						<th>Акциз</th>
+
+						<th colspan="2" class="text-center">Действия</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var e in Model)
+					{
+						<tr>
+							<td>@e.IdProduct</td>
+							<td>@e.ProductName</td>
+							<td>@e.ProductCode</td>
+							<td>@e.Mu.Name</td>
+							<td>@e.Country.ShortName</td>
+							<td>@e.PricePerPiece</td>
+							<td>@e.PricePerPieceNoNds</td>
+							<td>@e.CountPerPlase</td>
+							<td>@e.PricePerPieceNoNds</td>
+							<td>@e.Nds</td>
+							<td>@e.TariffPerPiece</td>
+							<td>@e.ExciseTaxe</td>
+
+							<!-- Кнопки в таблице -->
+							<td style="width:1px; white-space:nowrap;">
+								<form asp-controller="Products" method="post">
+									<input type="hidden" name="IdProduct"
+										   value="@e.IdProduct" />
+									<button type="submit" class="btn btn-warning" asp-action="OpenEProducts" method="post">
+										Изменить
+									</button>
+								</form>
+							</td>
+							<td style="width:1px; white-space:nowrap;">
+								<form asp-controller="Products" method="post">
+									<input type="hidden" name="IdProduct"
+										   value="@e.IdProduct" />
+									<button type="submit" class="btn btn-danger" asp-action="DProducts" method="post">
+										Удалить
+									</button>
+								</form>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

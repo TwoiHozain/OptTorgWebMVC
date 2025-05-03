@@ -1,0 +1,78 @@
+﻿@using OptTorgWebDB.Models
+@model IEnumerable<StorageEmployees>
+
+<!DOCTYPE html>
+
+<html>
+<body class="panel-body">
+	@{
+		@if(ViewBag.Type == 0)
+		{
+			<div class="alert alert-success alert-dismissible fade show m-1" role="alert">
+				@ViewBag.Message
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		}
+
+		@if (ViewBag.Type == 1)
+		{
+			<div class="alert alert-danger alert-dismissible fade show  m-1" role="alert">
+				@ViewBag.Message
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		}
+	}
+	<!-- Заголовок -->
+	<p class="fs-3 text-decoration-underline fw-bold m-1">Выбрать</p>
+	<!-- Заголовок 2 -->
+	<p class="fs-4 text-decoration-underline m-1">Сотрудника</p>
+
+	<!-- Кнопка -->
+	<a class="btn btn-warning m-1" style="width:15%" asp-controller="StorageEmployees" asp-action="TStorageEmployees">Отмена</a>
+	
+	<div class="table-responsive table-striped table-hover table-bordered">
+		<table class="table table-bordered table-striped table-hover caption-top">
+			<thead>
+				<tr>
+					<th>Ид</th>
+					<th>Фамилия</th>
+					<th>Имя</th>
+					<th>Отчество</th>
+					<th>Должность</th>
+					<th>Рабочий телфон</th>
+					<th>Эл. почта</th>
+					<th>ИНН</th>
+
+					<th colspan="2" class="text-center">Действия</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var e in Model)
+				{
+					<tr>
+						<td>@e.EmployeeNavigation.IdEmployees</td>
+						<td>@e.EmployeeNavigation.Surname</td>
+						<td>@e.EmployeeNavigation.Name</td>
+						<td>@e.EmployeeNavigation.Patronomic</td>
+						<td>@e.EmployeeNavigation.Position.Name</td>
+						<td>@e.EmployeeNavigation.WorkPhone</td>
+						<td>@e.EmployeeNavigation.Email</td>
+						<td>@e.EmployeeNavigation.Inn</td>
+
+						<!-- Кнопки в таблице -->
+						<td style="width:1px; white-space:nowrap;">
+							<form asp-controller="StorageEmployees" method="post">
+								<input asp-for="@e.IdSe" type="hidden"
+									   value="@e.IdSe" />
+								<button type="submit" class="btn btn-success" asp-action="OpenPickStorage" method="post">
+									Выбрать
+								</button>
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

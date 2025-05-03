@@ -79,6 +79,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.Count).HasColumnName("count");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
             entity.Property(e => e.SupplierId).HasColumnName("supplier_id");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Buys)
                 .HasForeignKey(d => d.ProductId)
@@ -201,6 +204,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.StatusId).HasColumnName("status_id");
             entity.Property(e => e.StorageId).HasColumnName("storage_id");
             entity.Property(e => e.TransportId).HasColumnName("transport_id");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
 
             entity.HasOne(d => d.Driver).WithMany(p => p.Delivery)
                 .HasForeignKey(d => d.DriverId)
@@ -264,10 +270,13 @@ public partial class OptTorgDBContext : DbContext
                 .HasColumnName("license");
             entity.Property(e => e.SeId).HasColumnName("se_id");
 
-            entity.HasOne(d => d.Se).WithMany(p => p.Drivers)
+            entity.HasOne(d => d.SeNavigation).WithMany(p => p.Drivers)
                 .HasForeignKey(d => d.SeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("se_fkey");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
         });
 
         modelBuilder.Entity<Employees>(entity =>
@@ -311,6 +320,9 @@ public partial class OptTorgDBContext : DbContext
             entity.HasOne(d => d.Position).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.PositionId)
                 .HasConstraintName("position_fkey");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
         });
 
         modelBuilder.Entity<MeasureUnits>(entity =>
@@ -404,6 +416,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.BuyId).HasColumnName("buy_id");
             entity.Property(e => e.Count).HasColumnName("count");
             entity.Property(e => e.DeliveryId).HasColumnName("delivery_id");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
 
             entity.HasOne(d => d.Buy).WithMany(p => p.ProductPart)
                 .HasForeignKey(d => d.BuyId)
@@ -446,7 +461,6 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.CountryId).HasColumnName("country_id");
             entity.Property(e => e.ExciseTaxe).HasColumnName("excise_taxe");
             entity.Property(e => e.Horactiristics)
-                .IsRequired()
                 .HasColumnName("horactiristics");
             entity.Property(e => e.MassNetto).HasColumnName("mass_netto");
             entity.Property(e => e.MassPerPlase).HasColumnName("mass_per_plase");
@@ -467,6 +481,9 @@ public partial class OptTorgDBContext : DbContext
                 .HasColumnName("product_name");
             entity.Property(e => e.SortId).HasColumnName("sort_id");
             entity.Property(e => e.TariffPerPiece).HasColumnName("tariff_per_piece");
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
 
             entity.HasOne(d => d.Country).WithMany(p => p.Products)
                 .HasForeignKey(d => d.CountryId)
@@ -630,13 +647,15 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.AdmissionDate).HasColumnName("admission_date");
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.StorageId).HasColumnName("storage_id");
-
-            entity.HasOne(d => d.Employee).WithMany(p => p.StorageEmployees)
+            entity.Property(e => e.Active)
+                .HasDefaultValue(true)
+                .HasColumnName("active");
+            entity.HasOne(d => d.EmployeeNavigation).WithMany(p => p.StorageEmployeesNavigation)
                 .HasForeignKey(d => d.EmployeeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("employee_fkey");
 
-            entity.HasOne(d => d.Storage).WithMany(p => p.StorageEmployees)
+            entity.HasOne(d => d.StorageNavigation).WithMany(p => p.StorageEmployees)
                 .HasForeignKey(d => d.StorageId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("storage_fkey");

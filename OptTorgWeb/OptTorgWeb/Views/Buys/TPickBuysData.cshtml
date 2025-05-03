@@ -1,0 +1,78 @@
+﻿@using OptTorgWebDB.Models
+@model Buys
+
+<div class="position-relative">
+	<div class="w-75 position-absolute top-50 start-50 translate-middle-x">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline fw-bold  m-1">Закупка</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Выбор количества</p>
+
+		<form class="p-3 border" asp-controller="Buys" asp-action="CreateBuys" method="post">
+			@Html.HiddenFor(model => model.SupplierId)
+			@Html.HiddenFor(model => model.ProductId)
+
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Организация</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Supplier.Company" readonly>
+								<label asp-for="Supplier.Company">Фамилия</label>
+								<span asp-validation-for="Supplier.Company" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Продукт</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Product.ProductName" readonly>
+								<label asp-for="Product.ProductName">Наименование</label>
+								<span asp-validation-for="Product.ProductName" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Product.PricePerPiece" readonly>
+								<label asp-for="Product.PricePerPiece">Цена за единицу</label>
+								<span asp-validation-for="Product.PricePerPiece" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Закупка</p>
+					<div class="row">
+						<div class="col pb-1">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Count">
+								<label asp-for="Count">Количество</label>
+								<span asp-validation-for="Count" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="CreateBuys" method="post">Сохранить</button>
+			</div>
+		</form>
+
+		<form class="p-1 d-grid gap-1" asp-controller="Buys" method="get">
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-warning" type="submit" asp-action="TBuys">Отмена</button>
+			</div>
+		</form>
+	</div>
+</div>
+

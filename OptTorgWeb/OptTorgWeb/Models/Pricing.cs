@@ -58,6 +58,7 @@ public partial class Pricing
         db.Pricing.Update(p);
         db.SaveChanges();
     }
+
     public static void DeletePricing(int id)
     {
         var db = new OptTorgDBContext();

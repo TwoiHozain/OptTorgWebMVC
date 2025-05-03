@@ -62,6 +62,7 @@ public partial class Customers
     public static void UpdateCustomers(Customers p)
     {
         var db = new OptTorgDBContext();
+        p.Active = true;
         db.Customers.Update(p);
         db.SaveChanges();
     }
