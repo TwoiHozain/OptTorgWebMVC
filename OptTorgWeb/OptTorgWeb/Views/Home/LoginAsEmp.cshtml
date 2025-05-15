@@ -14,7 +14,7 @@
 	}
 
 	<main class="w-25 position-absolute top-50 start-50 translate-middle">
-		<form class="p-5 bg-light border d-grid gap-2" asp-controller="Home" asp-action="OpenLoginAsEmp" method="post">
+		<form class="p-5 bg-light border d-grid gap-2" asp-controller="Home" asp-action="OnLoginAsEmp" method="post">
 			<h1 class="h3 mb-3 fw-normal p-3 ">Авторизация</h1>
 
 			<div class="form-floating">
@@ -28,7 +28,7 @@
 				<label asp-for="PassWord">Пароль</label>
 			</div>
 
-			<button class="btn btn-lg btn-primary w-25" type="submit" asp-action="OpenLoginAsEmp" method="post">Войти</button>
+			<button class="btn btn-lg btn-primary w-25" type="submit" asp-action="OnLoginAsEmp" method="post">Войти</button>
 		</form>
 	</main>
 </body>
