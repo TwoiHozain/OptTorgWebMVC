@@ -40,7 +40,7 @@
 					<th>Наименование</th>
 					<th>Госномер</th>
 					<th>Тоннаж</th>
-					<th colspan="2" class="text-center">Действия</th>
+					<th colspan="3" class="text-center">Действия</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -68,6 +68,15 @@
 									   value="@e.IdTransport" />
 								<button type="submit" class="btn btn-danger" asp-action="DTransport" method="post">
 									Удалить
+								</button>
+							</form>
+						</td>
+						<td style="width:1px; white-space:nowrap;">
+							<form asp-controller="Transport" method="post">
+								<input type="hidden" name="Id"
+									   value="@e.IdTransport" />
+								<button type="submit" class="btn btn-dark" asp-action="DCascade" method="post">
+									Удалить каскадно
 								</button>
 							</form>
 						</td>

@@ -1,0 +1,40 @@
+﻿@using OptTorgWebDB.Models
+@model Customers
+
+<!DOCTYPE html>
+
+
+<body class="text-center">
+
+	@if (@ViewBag.Message != null)
+	{
+		<div class="alert alert-warning alert-dismissible fade show m-1" role="alert">
+			@ViewBag.Message
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	}
+
+	<main class="w-25 position-absolute top-50 start-50 translate-middle">
+@* 		@foreach (Employees e in Employees.GetAllEmployees())
+		{
+			<p class="fs-6 text-decoration-underline m-1">@e.IdEmployees | @e.Position.Name</p>
+		} *@
+		
+		<form class="p-5 bg-light border d-grid gap-2" asp-controller="Home" asp-action="OnLoginAsCustomer" method="post">
+			<h1 class="h3 mb-3 fw-normal p-3 ">Авторизация</h1>
+
+			<div class="form-floating">
+				<input class="form-control" asp-for="IdCustomers">
+				<label asp-for="IdCustomers">Ид</label>
+				<span asp-validation-for="IdCustomers" class="text-danger"></span>
+			</div>
+
+			<div class="form-floating">
+				<input class="form-control" asp-for="Company">
+				<label asp-for="Company">Организация</label>
+				<span asp-validation-for="Company" class="text-danger"></span>
+			</div>
+			<button class="btn btn-lg btn-primary w-25" type="submit" asp-action="OnLoginAsCustomer" method="post">Войти</button>
+		</form>
+	</main>
+</body>

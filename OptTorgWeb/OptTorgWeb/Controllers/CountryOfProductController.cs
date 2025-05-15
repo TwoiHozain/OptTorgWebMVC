@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using OptTorgWeb.Classes;
 using OptTorgWebDB.Models;
 
 namespace OptTorgWeb.Controllers
@@ -9,10 +11,17 @@ namespace OptTorgWeb.Controllers
         private string _CreateForm = "CCountryOfProduct";
         private string _EditForm = "ECountryOfProduct";
 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var controller = (Controller)context.Controller;
+            controller.ViewData["Layout"] = CurrentUser.layout;
+        }
         //Read
         [HttpGet]
         public IActionResult TCountryOfProduct()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_ViewForm, CountryOfProduct.GetAllCountryOfProduct());
         }
 
@@ -72,9 +81,10 @@ namespace OptTorgWeb.Controllers
             CountryOfProduct.DeleteCountryOfProduct(id);
             return View(_ViewForm, CountryOfProduct.GetAllCountryOfProduct());
         }
-        //ToDo
-        public IActionResult DCascadeCountryOfProduct(int id)
+
+        public IActionResult DCascade(int id)
         {
+            CountryOfProduct.DCascade(id);
             return View("TMeasureUnits", CountryOfProduct.GetAllCountryOfProduct());
         }
     }

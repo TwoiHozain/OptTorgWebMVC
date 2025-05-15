@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+
 <html>
 <head>
 	<meta charset="utf-8" />
@@ -18,7 +19,7 @@
 
 	<!-- Dash Navbar Left -->
 	<div class="dash-navbar-left nb-visible">
-		<a class="navbar-brand" href="#">Admin</a>
+		<a class="navbar-brand" href="#">Admin 1</a>
 
 		<!-- Section 1 "Simple"-->
 		<p class="nb-nav-title">Простые тыблицы</p>
@@ -524,11 +525,149 @@
 					</li>
 				</ul>
 			</li>
+
+			<!-- ProductPart -->
+			<li class="dropdown">
+				<a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+					<i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Груз к доставке</span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+					<li>
+						<a asp-controller="ProductPart" asp-action="TProductPart">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Просмотреть</span>
+						</a>
+					</li>
+
+					<li>
+						<a asp-controller="ProductPart" asp-action="OpenPickDelivery">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Добавить</span>
+						</a>
+					</li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+				</ul>
+			</li>
+
+			<!-- Sending -->
+			<li class="dropdown">
+				<a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+					<i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Отправка</span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+					<li>
+						<a asp-controller="Sending" asp-action="TSending">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Просмотреть</span>
+						</a>
+					</li>
+
+					<li>
+						<a asp-controller="Sending" asp-action="OpenPickCustomer">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Добавить</span>
+						</a>
+					</li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+				</ul>
+			</li>
+			
+			<!-- Sales -->
+			<li class="dropdown">
+				<a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+					<i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Продажи</span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+					<li>
+						<a asp-controller="Sales" asp-action="TSales">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Просмотреть</span>
+						</a>
+					</li>
+
+					<li>
+						<a asp-controller="Sales" asp-action="OpenPickCustomer">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Добавить</span>
+						</a>
+					</li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+				</ul>
+			</li>
+
+			<!-- CargoInfo -->
+			<li class="dropdown">
+				<a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+					<i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Сведения о грузе</span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+					<li>
+						<a asp-controller="CargoInfo" asp-action="TCargoInfo">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Просмотреть</span>
+						</a>
+					</li>
+
+					<li>
+						<a asp-controller="CargoInfo" asp-action="OpenPickSending">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Добавить</span>
+						</a>
+					</li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+				</ul>
+			</li>
 		</ul>
 
 		<!-- Section 1 "Documents"-->
 		<p class="nb-nav-title">Отчеты</p>
 		<ul class="nb-nav">
+			<!-- Torg 12 -->
+			<li class="dropdown">
+				<a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+					<i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Торг-12</span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+					<li>
+						<a asp-controller="Delivery" asp-action="OpenPickDelivery">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Создать</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+			
+			<!-- 1T -->
+			<li class="dropdown">
+				<a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+					<i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Форма 1Т</span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+					<li>
+						<a asp-controller="Sending" asp-action="OpenPickSending">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Создать</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<!-- Section 1 "Выход"-->
+		<p class="nb-nav-title">Отчеты</p>
+		<ul class="nb-nav">
+			<!-- Torg 12 -->
+			<a asp-controller="Home" asp-action="OnLogOut" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+				<i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Выход</span>
+			</a>
 		</ul>
 	</div> <!-- /.dash-navbar-left -->
 
@@ -545,12 +684,6 @@
 			</div>
 		</div>
 	</div> <!-- /.content-wrap -->
-
-	@*     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div> *@
 
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

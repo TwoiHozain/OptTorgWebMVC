@@ -1,0 +1,84 @@
+﻿@using OptTorgWebDB.Models
+@model Sales
+
+<div class="position-relative">
+	<div class="w-100 position-absolute top-50 start-50 translate-middle-x">
+		@{
+			@if (ViewBag.Type == 0)
+			{
+				<div class="alert alert-success alert-dismissible fade show m-1" role="alert">
+					@ViewBag.Message
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			}
+
+			@if (ViewBag.Type == 1)
+			{
+				<div class="alert alert-danger alert-dismissible fade show  m-1" role="alert">
+					@ViewBag.Message
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			}
+		}
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline fw-bold m-1">Закупка</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Выбор продукта</p>
+
+		<!-- Кнопка -->
+		<a class="btn btn-warning m-1" style="width:15%" asp-controller="Sales" asp-action="TSales">Отмена</a>
+
+		<div class="table-responsive table-striped table-hover table-bordered">
+			<table class="table table-bordered table-striped table-hover caption-top">
+				<thead>
+					<tr>
+						<th>Ид</th>
+						<th>Наименование</th>
+						<th>Единицы измерения</th>
+						<th>Страна</th>
+						<th>Вид упаковки</th>
+						<th>Сорт</th>
+						<th>Масса одного места/шт.</th>
+						<th>Количество в одном месте</th>
+						<th>Код товара</th>
+						<th>Артикул товара</th>
+						<th>Характеристика  товара</th>
+
+
+						<th colspan="2" class="text-center">Действия</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var e in Products.GetProductsForSale())
+					{
+						<tr>
+							<td>@e.IdProduct</td>
+							<td>@e.ProductName</td>
+							<td>@e.Mu.Name</td>
+							<td>@e.Country.ShortName</td>
+							<td>@e.Packing.Type</td>
+							<td>@e.Sort.SortName</td>
+							<td>@e.MassPerPlase</td>
+							<td>@e.CountPerPlase</td>
+							<td>@e.ProductCode</td>
+							<td>@e.ProductArticle</td>
+							<td>@e.Horactiristics</td>
+
+							<!-- Кнопки в таблице -->
+							<td style="width:1px; white-space:nowrap;">
+								<form asp-controller="Sales" method="post">
+									@Html.HiddenFor(model => model.CustomerId)
+									<input type="hidden" name="ProductId"
+										   value="@e.IdProduct" />
+									<button type="submit" class="btn btn-success" asp-action="OpenPickCount" method="post">
+										Выбрать
+									</button>
+								</form>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

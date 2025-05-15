@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using OptTorgWeb.Classes;
 using OptTorgWebDB.Models;
 
 namespace OptTorgWeb.Controllers
@@ -9,10 +11,17 @@ namespace OptTorgWeb.Controllers
         private string _CreateForm = "CDeliveryStatus";
         private string _EditForm = "EDeliveryStatus";
 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var controller = (Controller)context.Controller;
+            controller.ViewData["Layout"] = CurrentUser.layout;
+        }
         //Read
         [HttpGet]
         public IActionResult TDeliveryStatus()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_ViewForm, DeliveryStatus.GetAllDeliveryStatus());
         }
 
@@ -46,6 +55,7 @@ namespace OptTorgWeb.Controllers
 
             return View(_CreateForm);
         }
+
         //Edit
         [HttpPost]
         public IActionResult OpenEDeliveryStatus(int id)
@@ -71,9 +81,10 @@ namespace OptTorgWeb.Controllers
             DeliveryStatus.DeletePosition(id);
             return View(_ViewForm, DeliveryStatus.GetAllDeliveryStatus());
         }
-        //ToDo
-        public IActionResult DCascadePosition(int id)
+
+        public IActionResult DCascade(int id)
         {
+            DeliveryStatus.DCascade(id);
             return View("TMeasureUnits", DeliveryStatus.GetAllDeliveryStatus());
         }
     }

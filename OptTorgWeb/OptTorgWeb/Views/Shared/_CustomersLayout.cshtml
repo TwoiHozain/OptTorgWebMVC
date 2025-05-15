@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/OptTorgWeb.styles.css" asp-append-version="true" />
+
+	<!-- Custom CSS -->
+	<link href="~/css/nbsstyle.css" rel="stylesheet">
+</head>
+<body>
+	<!-- Dash Navbar Top -->
+	<nav class="navbar navbar-light bg-faded navbar-static-top dash-navbar-top nb-visible">
+		<button class="nb-btn-toggle">
+			<span class="fa fa-bars"></span>
+		</button>
+	</nav>
+
+	<!-- Dash Navbar Left -->
+	<div class="dash-navbar-left nb-visible">
+		<a class="navbar-brand" href="#">Клиент</a>
+
+		<!-- Section 1 "Middle"-->
+		<p class="nb-nav-title">Основное</p>
+		<ul class="nb-nav">
+			<!-- Products -->
+			<li class="dropdown">
+				<a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+					<i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Товары</span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+					<li>
+						<a asp-controller="Products" asp-action="OpenTProductsGeneral">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Основная информация</span>
+						</a>
+					</li>
+
+					<li>
+						<a asp-controller="Products" asp-action="OpenTProductsMass">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Масса</span>
+						</a>
+					</li>
+
+					<li>
+						<a asp-controller="Products" asp-action="OpenTProductsCoast">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Цены</span>
+						</a>
+					</li>
+					<li>
+						<a asp-controller="Products" asp-action="OpenCProducts">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Создать</span>
+						</a>
+					</li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+				</ul>
+			</li>
+			
+			<!-- Sending -->
+			<li class="dropdown">
+				<a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+					<i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Отправка</span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+					<li>
+						<a asp-controller="Sending" asp-action="TSending">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Просмотреть</span>
+						</a>
+					</li>
+
+					<li>
+						<a asp-controller="Sending" asp-action="OpenPickCustomer">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Добавить</span>
+						</a>
+					</li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+				</ul>
+			</li>
+			
+			<!-- Sales -->
+			<li class="dropdown">
+				<a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+					<i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Продажи</span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+					<li>
+						<a asp-controller="Sales" asp-action="TSales">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Просмотреть</span>
+						</a>
+					</li>
+
+					<li>
+						<a asp-controller="Sales" asp-action="OpenPickCustomer">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Добавить</span>
+						</a>
+					</li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+				</ul>
+			</li>
+
+			<!-- CargoInfo -->
+			<li class="dropdown">
+				<a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+					<i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Сведения о грузе</span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+					<li>
+						<a asp-controller="CargoInfo" asp-action="TCargoInfo">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Просмотреть</span>
+						</a>
+					</li>
+
+					<li>
+						<a asp-controller="CargoInfo" asp-action="OpenPickSending">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Добавить</span>
+						</a>
+					</li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+		<!-- Section 1 "Documents"-->
+		<p class="nb-nav-title">Отчеты</p>
+		<ul class="nb-nav">
+			<!-- 1T -->
+			<li class="dropdown">
+				<a href="#" class="nav-link dropdown-toggle my-text-style" id="dropdown" data-bs-toggle="dropdown">
+					<i class="bi-bootstrap"></i><span class="d-none d-sm-inline">Форма 1Т</span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-color">
+					<li>
+						<a asp-controller="Sending" asp-action="OpenPickSending">
+							<span class="glyphicon glyphicon-comment nb-link-icon"></span>
+							<span class="nb-link-text">Создать</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	<div class="content-wrap nb-visible" data-effect="nb-push">
+		<div class="container-fluid">
+			<div class="row">
+				<!-- Your content here -->
+				<div class="container">
+					<main role="main" class="pb-3">
+						@RenderBody()
+					</main>
+				</div>
+				<!-- End of your content -->
+			</div>
+		</div>
+	</div> <!-- /.content-wrap -->
+
+	@*     <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div> *@
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace OptTorgWebDB.Models;
@@ -62,8 +63,18 @@ public partial class OptTorgDBContext : DbContext
     public virtual DbSet<Transport> Transport { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Database=OptTorgDB;Username=postgres;Password=Golubgolub;Persist Security Info=True");
+    {
+        //if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+        //{
+        //    optionsBuilder.UseNpgsql("Host=localhost;Database=OptTorgDB;Username=postgres;Password=Golubgolub;Persist Security Info=True");
+        //}
+        //else
+        //{
+            optionsBuilder.UseNpgsql("Host=roma-diplom-postgres-database.postgres.database.azure.com" +
+                ";Database=OptTorgWebDeploy;" +
+                "Username=roma;Password=CeJP769X0o;Persist Security Info=True");
+        //}
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -104,6 +115,7 @@ public partial class OptTorgDBContext : DbContext
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id_cargo_info");
             entity.Property(e => e.Count).HasColumnName("count");
+
             entity.Property(e => e.SaleId).HasColumnName("sale_id");
             entity.Property(e => e.SendingId).HasColumnName("sending_id");
 
@@ -192,6 +204,8 @@ public partial class OptTorgDBContext : DbContext
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id_delivery");
             entity.Property(e => e.Date).HasColumnName("date");
+            entity.Property(e => e.DoverennostInfo).HasColumnName("doverenost_info");
+
             entity.Property(e => e.DriverId).HasColumnName("driver_id");
             entity.Property(e => e.EmployeeAcceptId).HasColumnName("employee_accept_id");
             entity.Property(e => e.EmployeeReceiveId).HasColumnName("employee_receive_id");
@@ -509,7 +523,7 @@ public partial class OptTorgDBContext : DbContext
         modelBuilder.Entity<Sales>(entity =>
         {
             entity.HasKey(e => e.IdSales).HasName("sales_pkey");
-
+            
             entity.ToTable("sales");
 
             entity.Property(e => e.IdSales)
@@ -517,11 +531,20 @@ public partial class OptTorgDBContext : DbContext
                 .HasColumnName("id_sales");
             entity.Property(e => e.Count).HasColumnName("count");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
+            entity.Property(e => e.CustomerId).HasColumnName("customer_id");
+            entity.Property(e => e.Active)
+                  .HasDefaultValue(true)
+                  .HasColumnName("active");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Sales)
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("product_fkey");
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.Sales)
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("customer_fkey");
         });
 
         modelBuilder.Entity<Sending>(entity =>
@@ -549,7 +572,9 @@ public partial class OptTorgDBContext : DbContext
                 .HasColumnType("time with time zone")
                 .HasColumnName("downtime_unloading");
             entity.Property(e => e.DriverId).HasColumnName("driver_id");
-            entity.Property(e => e.EmployeesId).HasColumnName("employees_id");
+            entity.Property(e => e.GlavBuhId).HasColumnName("employees_id");
+            entity.Property(e => e.SeOtpuskRazreshilId).HasColumnName("otpusk_razreshil");
+            entity.Property(e => e.DoverenostInfo).HasColumnName("doverenost_info");
             entity.Property(e => e.Expedirovanie).HasColumnName("expedirovanie");
             entity.Property(e => e.ExtraOperLoading).HasColumnName("extra_oper_loading");
             entity.Property(e => e.ExtraOperUnloading).HasColumnName("extra_oper_unloading");
@@ -559,7 +584,7 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.PricingId).HasColumnName("pricing_id");
             entity.Property(e => e.RascenkaVoditelu).HasColumnName("rascenka_voditelu");
             entity.Property(e => e.SClientaZaUslugi).HasColumnName("s_clienta_za_uslugi");
-            entity.Property(e => e.SeId).HasColumnName("se_id");
+            entity.Property(e => e.SeOtpuskProizvelId).HasColumnName("se_id");
             entity.Property(e => e.Shtraph).HasColumnName("shtraph");
             entity.Property(e => e.SsId).HasColumnName("ss_id");
             entity.Property(e => e.StorageId).HasColumnName("storage_id");
@@ -576,6 +601,9 @@ public partial class OptTorgDBContext : DbContext
             entity.Property(e => e.VoditeluZaUslugi).HasColumnName("voditelu_za_uslugi");
             entity.Property(e => e.ZaSpecTransport).HasColumnName("za_spec_transport");
             entity.Property(e => e.ZaSrochnost).HasColumnName("za_srochnost");
+            entity.Property(e => e.Active)
+                  .HasDefaultValue(true)
+                  .HasColumnName("active");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Sending)
                 .HasForeignKey(d => d.CustomerId)
@@ -587,8 +615,8 @@ public partial class OptTorgDBContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("driver_fkey");
 
-            entity.HasOne(d => d.Employees).WithMany(p => p.Sending)
-                .HasForeignKey(d => d.EmployeesId)
+            entity.HasOne(d => d.GlavBuh).WithMany(p => p.Sending)
+                .HasForeignKey(d => d.GlavBuhId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("employees_fkey");
 
@@ -597,10 +625,15 @@ public partial class OptTorgDBContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("pricing_fkey");
 
-            entity.HasOne(d => d.Se).WithMany(p => p.Sending)
-                .HasForeignKey(d => d.SeId)
+            entity.HasOne(d => d.SeOtpuskProizvel).WithMany(p => p.Sending1)
+                .HasForeignKey(d => d.SeOtpuskProizvelId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("storage_employee_fkey");
+            
+            entity.HasOne(d => d.SeOtpuskRazreshil).WithMany(p => p.Sending2)
+                .HasForeignKey(d => d.SeOtpuskRazreshilId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("otpusk_razreshil_fkey");
 
             entity.HasOne(d => d.Ss).WithMany(p => p.Sending)
                 .HasForeignKey(d => d.SsId)

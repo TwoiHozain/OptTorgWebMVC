@@ -1,0 +1,91 @@
+﻿@using OptTorgWebDB.Models
+@model Delivery
+
+<div class="position-relative">
+	<div class="w-50 position-absolute top-50 start-50 translate-middle-x">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline fw-bold  m-1">Создать</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Склад</p>
+
+		<form class="p-3 border" asp-controller="Delivery" asp-action="SaveChangesDelivery" method="post">
+			@Html.HiddenFor(model => model.EmployeeAcceptId)
+			@Html.HiddenFor(model => model.EmployeeReceiveId)
+			@Html.HiddenFor(model => model.StorageId)
+			@Html.HiddenFor(model => model.DriverId)
+			@Html.HiddenFor(model => model.TransportId)
+			@Html.HiddenFor(model => model.Active)
+
+
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Доставка</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="IdDelivery" readonly>
+								<label asp-for="IdDelivery">Ид</label>
+								<span asp-validation-for="IdDelivery" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Osnovanie" readonly>
+								<label asp-for="Osnovanie">Основание</label>
+								<span asp-validation-for="Osnovanie" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="NomerDoverennosti" readonly>
+								<label asp-for="NomerDoverennosti">Номер доверенности</label>
+								<span asp-validation-for="NomerDoverennosti" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Date" readonly>
+								<label asp-for="Date">Дата доставки</label>
+								<span asp-validation-for="Date" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Статус</p>
+					<div class="row">
+						<div class="form-floating">
+							<label class="dropdown-header p-1" asp-for="StatusId">Статус</label>
+							<select class="form-select" aria-label="Default select example" asp-for="StatusId">
+								@foreach (DeliveryStatus c in DeliveryStatus.GetAllDeliveryStatus())
+								{
+									<option value="@c.IdDs" selected="@(c.IdDs == Model.StatusId)">@c.Status</option>
+								}
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesDelivery" method="post">Сохранить</button>
+			</div>
+		</form>
+
+		<form class="p-1 d-grid gap-1" asp-controller="Delivery" method="get">
+			<div class="d-grid gap-2 col-5 mx-auto">
+					<button class="btn btn-lg btn-warning" type="submit" asp-action="TDelivery">Отмена</button>
+			</div>
+		</form>
+	</div>
+</div>
+

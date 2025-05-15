@@ -60,13 +60,14 @@
 						<!-- Кнопки в таблице -->
 						<td style="width:1px; white-space:nowrap;">
 							<form asp-controller="Delivery" method="post">
-								<input type="hidden" name="ProductId"
+								<input type="hidden" name="Id"
 									   value="@e.IdDelivery" />
-								<button type="submit" class="btn btn-warning" asp-action="OpenEBuys" method="post">
+								<button type="submit" class="btn btn-warning" asp-action="OpenEDelivery" method="post">
 									Изменить
 								</button>
 							</form>
 						</td>
+
 						<td style="width:1px; white-space:nowrap;">
 							<form asp-controller="Delivery" method="post">
 								<input type="hidden" name="Id"
@@ -76,6 +77,18 @@
 								</button>
 							</form>
 						</td>
+						@if (ViewBag.Role == 0)
+						{
+							<td style="width:1px; white-space:nowrap;">
+								<form asp-controller="Delivery" method="post">
+									<input type="hidden" name="Id"
+										   value="@e.IdDelivery" />
+									<button type="submit" class="btn btn-dark" asp-action="DCascade" method="post">
+										Удалить каскадно
+									</button>
+								</form>
+							</td>
+						}
 					</tr>
 				}
 			</tbody>

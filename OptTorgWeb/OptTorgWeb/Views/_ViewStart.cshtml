@@ -1,3 +1,5 @@
-﻿@{
-    Layout = "_Layout";
+﻿@using OptTorgWeb.Classes
+@{
+    // Layout = "Login";
+    Layout = CurrentUser.layout ?? "Login";
 }

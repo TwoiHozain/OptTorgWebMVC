@@ -71,6 +71,18 @@
 								</button>
 							</form>
 						</td>
+						@if (ViewBag.Role == 0)
+						{
+							<td style="width:1px; white-space:nowrap;">
+								<form asp-controller="MeasureUnits" method="post">
+									<input type="hidden" name="Id"
+										   value="@e.IdMu" />
+									<button type="submit" class="btn btn-dark" asp-action="DCascade" method="post">
+										Удалить каскадно
+									</button>
+								</form>
+							</td>
+						}
 					</tr>
 				}
 			</tbody>

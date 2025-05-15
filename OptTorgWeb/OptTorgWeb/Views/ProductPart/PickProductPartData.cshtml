@@ -1,0 +1,117 @@
+﻿@using OptTorgWebDB.Models
+@model ProductPart
+
+<div class="position-relative">
+	<div class="w-50 position-absolute top-50 start-50 translate-middle-x">
+		
+		@if (ViewBag.Type == 1)
+		{
+			<div class="alert alert-danger alert-dismissible fade show  m-1" role="alert">
+				@ViewBag.Message
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		}
+
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline fw-bold  m-1">Выбрать</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Количество товара</p>
+
+		<form class="p-3 border" asp-controller="ProductPart" asp-action="CreateProductPart" method="post">
+			@Html.HiddenFor(model => model.BuyId)
+			@Html.HiddenFor(model => model.DeliveryId)
+			
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Количество товара</p>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" value="@ViewData["InDeliveryCount"]" readonly>
+								<label>Распределено по доставкам</label>
+								<span class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+			
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Count">
+								<label asp-for="Count">Количество</label>
+								<span asp-validation-for="Count" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Склад</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Delivery.Storage.IdStorages" readonly>
+								<label asp-for="Delivery.Storage.IdStorages">Номер склада</label>
+								<span asp-validation-for="Delivery.Storage.IdStorages" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Delivery.Storage.Adress" readonly>
+								<label asp-for="Delivery.Storage.Adress">Адрес</label>
+								<span asp-validation-for="Delivery.Storage.Adress" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Товар</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Buy.Product.ProductName" readonly>
+								<label asp-for="Buy.Product.ProductName">Наименование</label>
+								<span asp-validation-for="Buy.Product.ProductName" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Поставщик</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Buy.Supplier.Company" readonly>
+								<label asp-for="Buy.Supplier.Company">Организация</label>
+								<span asp-validation-for="Buy.Supplier.Company" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="CreateProductPart" method="post">Сохранить</button>
+			</div>
+		</form>
+
+		<form class="p-1 d-grid gap-1" asp-controller="ProductPart" method="get">
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-warning" type="submit" asp-action="TProductPart">Отмена</button>
+			</div>
+		</form>
+	</div>
+</div>
+

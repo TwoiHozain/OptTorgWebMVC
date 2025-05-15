@@ -1,0 +1,90 @@
+﻿@using OptTorgWebDB.Models
+@model IEnumerable<ProductPart>
+
+<!DOCTYPE html>
+
+<html>
+<body class="panel-body">
+	@{
+		@if (ViewBag.Type == 0)
+		{
+			<div class="alert alert-success alert-dismissible fade show m-1" role="alert">
+				@ViewBag.Message
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		}
+
+		@if (ViewBag.Type == 1)
+		{
+			<div class="alert alert-danger alert-dismissible fade show  m-1" role="alert">
+				@ViewBag.Message
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		}
+	}
+	<!-- Заголовок -->
+	<p class="fs-3 text-decoration-underline fw-bold m-1">Просмотреть</p>
+	<!-- Заголовок 2 -->
+	<p class="fs-4 text-decoration-underline m-1">Список грузов к доставке</p>
+
+	<!-- Кнопка -->
+	<a class="btn btn-success m-1" style="width:15%" asp-controller="ProductPart" asp-action="OpenPickDelivery">Добавить</a>
+
+	<div class="table-responsive table-striped table-hover table-bordered">
+		<table class="table table-bordered table-striped table-hover caption-top">
+			<thead>
+				<tr>
+					<th>Ид</th>
+					<th>Ид доставки</th>
+					<th>Склад</th>
+					<th>Оснолвание</th>
+					<th>Дата</th>
+					<th>Поставщик</th>
+					<th>Товар</th>
+					<th>Количество</th>
+
+					<th colspan="2" class="text-center">Действия</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var e in @Model)
+				{
+					<tr>
+						<td>@e.IdPp</td>
+						<td>@e.DeliveryId</td>
+						<td>@e.Delivery.Storage.Adress</td>
+						<td>@e.Delivery.Osnovanie</td>
+						<td>@e.Delivery.Date</td>
+						<td>@e.Buy.Supplier.Company</td>
+						<td>@e.Buy.Product.ProductName</td>
+						<td>@e.Count</td>
+
+						<!-- Кнопки в таблице -->
+						<td style="width:1px; white-space:nowrap;">
+							<form asp-controller="ProductPart" method="post">
+								<input type="hidden" name="IdPp"
+									   value="@e.IdPp" />
+								<button type="submit" class="btn btn-warning" asp-action="OpenEBuys" method="post">
+									Изменить
+								</button>
+							</form>
+						</td>
+						@if (ViewBag.Role == 0)
+						{
+							<td style="width:1px; white-space:nowrap;">
+								<form asp-controller="ProductPart" method="post">
+									<input type="hidden" name="IdPp"
+										   value="@e.IdPp" />
+									<button type="submit" class="btn btn-dark" asp-action="DCascade" method="post">
+										Удалить каскадно
+									</button>
+								</form>
+							</td>
+						}
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

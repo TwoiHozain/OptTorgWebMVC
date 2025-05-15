@@ -53,4 +53,13 @@ public partial class Transport
 
         db.SaveChanges();
     }
+
+    public static void DCascade(int id)
+    {
+        var db = new OptTorgDBContext();
+        var strg = db.Transport.FirstOrDefault(x => x.IdTransport == id);
+
+        db.Remove(strg);
+        db.SaveChanges();
+    }
 }

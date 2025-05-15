@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using OptTorgWeb.Classes;
 using OptTorgWebDB.Models;
 
 namespace OptTorgWeb.Controllers
@@ -9,10 +11,17 @@ namespace OptTorgWeb.Controllers
         private string _CreateForm = "CProductSort";
         private string _EditForm = "EProductSort";
 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var controller = (Controller)context.Controller;
+            controller.ViewData["Layout"] = CurrentUser.layout;
+        }
         //Read
         [HttpGet]
         public IActionResult TProductSort()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_ViewForm, ProductSort.GetAllProductSort());
         }
 
@@ -71,9 +80,10 @@ namespace OptTorgWeb.Controllers
             ProductSort.DeleteProductSort(id);
             return View(_ViewForm, ProductSort.GetAllProductSort());
         }
-        //ToDo
-        public IActionResult DCascadeProductSort(int id)
+
+        public IActionResult DCascade(int id)
         {
+            ProductSort.DCascade(id);
             return View("TMeasureUnits", ProductSort.GetAllProductSort());
         }
     }

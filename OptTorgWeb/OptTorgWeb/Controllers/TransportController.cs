@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using OptTorgWeb.Classes;
 using OptTorgWebDB.Models;
 
 namespace OptTorgWeb.Controllers
@@ -9,10 +11,16 @@ namespace OptTorgWeb.Controllers
         private string _CreateForm = "CTransport";
         private string _EditForm = "ETransport";
 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var controller = (Controller)context.Controller;
+            controller.ViewData["Layout"] = CurrentUser.layout;
+        }
         //Read
         [HttpGet]
         public IActionResult TTransport()
         {
+            ViewBag.Role = CurrentUser.role;
             return View(_ViewForm, Transport.GetAllTransport());
         }
 
@@ -71,9 +79,10 @@ namespace OptTorgWeb.Controllers
             Transport.DeleteTransport(id);
             return View(_ViewForm, Transport.GetAllTransport());
         }
-        //ToDo
-        public IActionResult DCascadeTransport(int id)
+
+        public IActionResult DCascade(int id)
         {
+            Transport.DCascade(id);
             return View("TMeasureUnits", Transport.GetAllTransport());
         }
     }

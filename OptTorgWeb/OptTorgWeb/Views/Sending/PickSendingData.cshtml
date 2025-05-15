@@ -1,0 +1,318 @@
+﻿@using OptTorgWebDB.Models
+@model Sending
+
+<div class="position-relative">
+	<div class="w-50 position-absolute top-50 start-50 translate-middle-x">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline fw-bold  m-1">Создать</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Склад</p>
+
+		<form class="p-3 border" asp-controller="Sending" asp-action="CreateSending" method="post">
+			@Html.HiddenFor(model => model.CustomerId)
+			@Html.HiddenFor(model => model.StorageId)
+			@Html.HiddenFor(model => model.PricingId)
+			@Html.HiddenFor(model => model.GlavBuhId)
+			@Html.HiddenFor(model => model.SeOtpuskProizvelId)
+			@Html.HiddenFor(model => model.SeOtpuskRazreshilId)
+			@Html.HiddenFor(model => model.DriverId)
+			@Html.HiddenFor(model => model.TransportId)
+
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Расстояние</p>
+					
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="DistanceInCity">
+								<label asp-for="DistanceInCity">В городе км.</label>
+								<span asp-validation-for="DistanceInCity" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Distance1TypeRoad">
+								<label asp-for="Distance1TypeRoad">По первой группе дорог км.</label>
+								<span asp-validation-for="Distance1TypeRoad" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Distance2TypeRoad">
+								<label asp-for="Distance2TypeRoad">По второй группе дорог км.</label>
+								<span asp-validation-for="Distance2TypeRoad" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Distance3TypeRoad">
+								<label asp-for="Distance3TypeRoad">По третьей группе дорог км.</label>
+								<span asp-validation-for="Distance3TypeRoad" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Погрузка</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="TimeLoading ">
+								<label asp-for="TimeLoading ">Время погрузки</label>
+								<span asp-validation-for="TimeLoading " class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="ExtraOperLoading ">
+								<label asp-for="ExtraOperLoading ">Плата за доп. операции</label>
+								<span asp-validation-for="ExtraOperLoading " class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="DateArrivalLoading ">
+								<label asp-for="DateArrivalLoading ">Дата прибытия</label>
+								<span asp-validation-for="DateArrivalLoading " class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="TimeExtraOperationsLoading ">
+								<label asp-for="TimeExtraOperationsLoading ">Время дополнительных операций</label>
+								<span asp-validation-for="TimeExtraOperationsLoading " class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="DowntimeLoading  ">
+								<label asp-for="DowntimeLoading  ">Время простоя</label>
+								<span asp-validation-for="DowntimeLoading  " class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Разгрузка</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="TimeUnloading">
+								<label asp-for="TimeUnloading  ">Время разрузки</label>
+								<span asp-validation-for="TimeUnloading  " class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="ExtraOperUnloading">
+								<label asp-for="ExtraOperUnloading">Плата за доп. операции</label>
+								<span asp-validation-for="ExtraOperUnloading" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="DateArrivalUnloading">
+								<label asp-for="DateArrivalUnloading">Дата прибытия</label>
+								<span asp-validation-for="DateArrivalUnloading" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="DowntimeUnloading">
+								<label asp-for="DowntimeUnloading">Время простоя</label>
+								<span asp-validation-for="DowntimeUnloading" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Оплата</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="SClientaZaUslugi">
+								<label asp-for="SClientaZaUslugi ">С клиента за услуги</label>
+								<span asp-validation-for="SClientaZaUslugi " class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="VoditeluZaUslugi">
+								<label asp-for="VoditeluZaUslugi ">Водителю за услуги</label>
+								<span asp-validation-for="VoditeluZaUslugi " class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Shtraph">
+								<label asp-for="Shtraph ">Штраф</label>
+								<span asp-validation-for="Shtraph " class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="RascenkaVoditelu">
+								<label asp-for="RascenkaVoditelu ">Расценка водителю</label>
+								<span asp-validation-for="RascenkaVoditelu " class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="MainTarriffs">
+								<label asp-for="MainTarriffs">Основной тариф</label>
+								<span asp-validation-for="MainTarriffs  " class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Дополнительная плата</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="Expedirovanie">
+								<label asp-for="Expedirovanie">За экспедирование</label>
+								<span asp-validation-for="Expedirovanie" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="ZaSrochnost">
+								<label asp-for="ZaSrochnost ">За срочность</label>
+								<span asp-validation-for="ZaSrochnost " class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="ZaSpecTransport">
+								<label asp-for="ZaSpecTransport">За спец. транспорт</label>
+								<span asp-validation-for="ZaSpecTransport" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="OtherExtraPay">
+								<label asp-for="OtherExtraPay">Другое</label>
+								<span asp-validation-for="OtherExtraPay" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Документы</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="CodExpedir">
+								<label asp-for="CodExpedir">Код экспедирования</label>
+								<span asp-validation-for="CodExpedir" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="DataDoverenosti">
+								<label asp-for="DataDoverenosti">Дата доверенности</label>
+								<span asp-validation-for="DataDoverenosti" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="NomerDoverenosti">
+								<label asp-for="NomerDoverenosti">Номер доверенности</label>
+								<span asp-validation-for="NomerDoverenosti" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="DoverenostInfo">
+								<label asp-for="DoverenostInfo">Кем, кому выдана доверенность</label>
+								<span asp-validation-for="DoverenostInfo" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="CreateSending" method="post">Сохранить</button>
+			</div>
+		</form>
+
+		<form class="p-1 d-grid gap-1" asp-controller="Sending" method="get">
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-warning" type="submit" asp-action="TSending">Отмена</button>
+			</div>
+		</form>
+	</div>
+</div>
+

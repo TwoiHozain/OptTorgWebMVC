@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using OptTorgWeb.Classes;
 using OptTorgWebDB.Models;
 
 namespace OptTorgWeb.Controllers
@@ -9,10 +11,17 @@ namespace OptTorgWeb.Controllers
         private string _CreateForm = "CPackaging";
         private string _EditForm = "EPackaging";
 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var controller = (Controller)context.Controller;
+            controller.ViewData["Layout"] = CurrentUser.layout;
+        }
         //Read
         [HttpGet]
         public IActionResult TPackaging()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_ViewForm, Packaging.GetAllPackaging());
         }
 
@@ -71,9 +80,10 @@ namespace OptTorgWeb.Controllers
             Packaging.DeletePackaging(id);
             return View(_ViewForm, Packaging.GetAllPackaging());
         }
-        //ToDo
-        public IActionResult DCascadePackaging(int id)
+
+        public IActionResult DCascade(int id)
         {
+            Packaging.DCascade(id);
             return View("TMeasureUnits", Packaging.GetAllPackaging());
         }
     }

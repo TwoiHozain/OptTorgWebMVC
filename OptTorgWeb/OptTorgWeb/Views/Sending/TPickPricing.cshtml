@@ -1,0 +1,84 @@
+﻿@using OptTorgWebDB.Models
+@model Sending
+
+<!DOCTYPE html>
+
+<html>
+<body class="panel-body">
+	@{
+		@if (ViewBag.Type == 0)
+		{
+			<div class="alert alert-success alert-dismissible fade show m-1" role="alert">
+				@ViewBag.Message
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		}
+
+		@if (ViewBag.Type == 1)
+		{
+			<div class="alert alert-danger alert-dismissible fade show  m-1" role="alert">
+				@ViewBag.Message
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		}
+	}
+	<!-- Заголовок -->
+	<p class="fs-3 text-decoration-underline fw-bold m-1">Просмотреть</p>
+	<!-- Заголовок 2 -->
+	<p class="fs-4 text-decoration-underline m-1">Расценки</p>
+
+	<div class="table-responsive table-striped table-hover table-bordered">
+		<table class="table table-bordered table-striped table-hover caption-top">
+			<thead>
+				<tr>
+					<th>Ид</th>
+					<th>За тонны</th>
+					<th>За тонны-км</th>
+					<th>За погрузочно-разгрузочные работы</th>
+					<th>За недогруз авто</th>
+					<th>За экспедирование</th>
+					<th>За простой при погрузке</th>
+					<th>За простой при разгрузке</th>
+					<th>За срочность</th>
+					<th>За спец. транспорт</th>
+					<th>Прочее</th>
+
+					<th colspan="2" class="text-center">Действия</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var e in Pricing.GetAllPricing())
+				{
+					<tr>
+						<td>@e.IdPricing</td>
+						<td>@e.ForTonnes</td>
+						<td>@e.ForTonnesKm</td>
+						<td>@e.PogruzRazgruz</td>
+						<td>@e.NedogruzAvto</td>
+						<td>@e.Expedirovanie</td>
+						<td>@e.DowntimeLoading</td>
+						<td>@e.DowntimeUnloading</td>
+						<td>@e.ZaSrochnost</td>
+						<td>@e.ZaSpecTransport</td>
+						<td>@e.Other</td>
+
+						<!-- Кнопки в таблице -->
+						<td style="width:1px; white-space:nowrap;">
+							<form asp-controller="Sending" method="post">
+								@Html.HiddenFor(model => model.CustomerId)
+								@Html.HiddenFor(model => model.StorageId)
+
+								<input type="hidden" name="PricingId"
+									   value="@e.IdPricing" />
+								<button type="submit" class="btn btn-success" asp-action="OpenPickGlavBuh" method="post">
+									Выбрать
+								</button>
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

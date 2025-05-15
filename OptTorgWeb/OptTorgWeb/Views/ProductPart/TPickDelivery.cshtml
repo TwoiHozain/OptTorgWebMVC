@@ -1,0 +1,74 @@
+﻿@using OptTorgWebDB.Models
+@model ProductPart
+
+<!DOCTYPE html>
+
+<html>
+<body class="panel-body">
+	@{
+		@if (ViewBag.Type == 0)
+		{
+			<div class="alert alert-success alert-dismissible fade show m-1" role="alert">
+				@ViewBag.Message
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		}
+
+		@if (ViewBag.Type == 1)
+		{
+			<div class="alert alert-danger alert-dismissible fade show  m-1" role="alert">
+				@ViewBag.Message
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		}
+	}
+	<!-- Заголовок -->
+	<p class="fs-3 text-decoration-underline fw-bold m-1">Выбрать</p>
+	<!-- Заголовок 2 -->
+	<p class="fs-4 text-decoration-underline m-1">Доставку</p>
+
+	<div class="table-responsive table-striped table-hover table-bordered">
+		<table class="table table-bordered table-striped table-hover caption-top">
+			<thead>
+				<tr>
+					<th>Ид</th>
+					<th>Сотрудник принял</th>
+					<th>Сотрудник получил</th>
+					<th>Склад</th>
+					<th>Водитель</th>
+					<th>Транспорт</th>
+					<th>Статус</th>
+
+					<th colspan="2" class="text-center">Действия</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var e in Delivery.GetDeliveryForProductPart())
+				{
+					<tr>
+						<td>@e.IdDelivery</td>
+						<td>@e.EmployeeAccept.Surname @e.EmployeeAccept.Name</td>
+						<td>@e.EmployeeReceive.Surname @e.EmployeeReceive.Name</td>
+						<td>@e.Storage.Adress</td>
+						<td>@e.Driver.SeNavigation.EmployeeNavigation.Surname @e.Driver.SeNavigation.EmployeeNavigation.Name</td>
+						<td>@e.Transport.Name</td>
+						<td>@e.Status.Status</td>
+
+						<!-- Кнопки в таблице -->
+						<td style="width:1px; white-space:nowrap;">
+							<form asp-controller="ProductPart" method="post">
+
+								<input type="hidden" name="DeliveryId"
+									   value="@e.IdDelivery" />
+								<button type="submit" class="btn btn-success" asp-action="OpenPickBuy" method="post">
+									Выбрать
+								</button>
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

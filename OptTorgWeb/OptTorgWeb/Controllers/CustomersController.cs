@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using OptTorgWeb.Classes;
 using OptTorgWebDB.Models;
 
 namespace OptTorgWeb.Controllers
@@ -10,15 +12,24 @@ namespace OptTorgWeb.Controllers
         private string _CreateForm = "CCustomers";
         private string _EditForm = "ECustomers";
 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var controller = (Controller)context.Controller;
+            controller.ViewData["Layout"] = CurrentUser.layout;
+        }
         //Read
         [HttpGet]
         public IActionResult TACustomers()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_AdressViewForm, Customers.GetAllCustomers());
         }
 
         public IActionResult TCCustomers()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_ContactsViewForm, Customers.GetAllCustomers());
         }
 
@@ -36,8 +47,6 @@ namespace OptTorgWeb.Controllers
 
             ViewData["Message"] = "Запись успешно создана";
             ViewData["Type"] = 0;
-            //TODO:
-            //Возврат к форме из которой пришел
 
             return View(_ContactsViewForm, Customers.GetAllCustomers());
         }
@@ -69,8 +78,7 @@ namespace OptTorgWeb.Controllers
             p.Active = true;
 
             Customers.UpdateCustomers(p);
-            //TODO:
-            //Возврат к форме из которой пришел
+
             return View(_ContactsViewForm, Customers.GetAllCustomers());
         }
 
@@ -80,13 +88,13 @@ namespace OptTorgWeb.Controllers
         public IActionResult DCustomers(int id)
         {
             Customers.DeleteCustomers(id);
-            //TODO:
-            //Возврат к форме из которой пришел
+
             return View(_ContactsViewForm, Customers.GetAllCustomers());
         }
-        //ToDo
-        public IActionResult DCascadeCustomers(int id)
+
+        public IActionResult DCascade(int id)
         {
+            Customers.DCascade(id);
             return View("TMeasureUnits", Customers.GetAllCustomers());
         }
     }

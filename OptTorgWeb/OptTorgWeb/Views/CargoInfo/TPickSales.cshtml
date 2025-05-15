@@ -1,0 +1,78 @@
+﻿@using OptTorgWebDB.Models
+@model CargoInfo
+
+<!DOCTYPE html>
+
+<html>
+<body class="panel-body">
+	@{
+		@if (ViewBag.Type == 0)
+		{
+			<div class="alert alert-success alert-dismissible fade show m-1" role="alert">
+				@ViewBag.Message
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		}
+
+		@if (ViewBag.Type == 1)
+		{
+			<div class="alert alert-danger alert-dismissible fade show  m-1" role="alert">
+				@ViewBag.Message
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		}
+	}
+	<!-- Заголовок -->
+	<p class="fs-3 text-decoration-underline fw-bold m-1">Выбрать</p>
+	<!-- Заголовок 2 -->
+	<p class="fs-4 text-decoration-underline m-1">Список продаж</p>
+
+	<!-- Кнопка -->
+	<a class="btn btn-warning m-1" style="width:15%" asp-controller="CargoInfo" asp-action="TCargoInfo">Отмена</a>
+
+	<div class="table-responsive table-striped table-hover table-bordered">
+		<table class="table table-bordered table-striped table-hover caption-top">
+			<thead>
+				<tr>
+					<th>Ид</th>
+					<th>Поставщик</th>
+					<th>Адрес поставщика</th>
+					<th>Ид товара</th>
+					<th>Товар</th>
+					<th>Код продукта</th>
+					<th>Количество</th>
+
+					<th colspan="2" class="text-center">Действия</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var e in Sales.GetAllSales())
+				{
+					<tr>
+						<td>@e.IdSales</td>
+						<td>@e.Customer.Company</td>
+						<td>@e.Customer.Adress</td>
+						<td>@e.Product.IdProduct</td>
+						<td>@e.Product.ProductName</td>
+						<td>@e.Product.ProductCode</td>
+						<td>@e.Count</td>
+
+						<!-- Кнопки в таблице -->
+						<td style="width:1px; white-space:nowrap;">
+							<form asp-controller="CargoInfo" method="post">
+								@Html.HiddenFor(model => model.SendingId)
+
+								<input type="hidden" name="SaleId"
+									   value="@e.IdSales" />
+								<button type="submit" class="btn btn-success" asp-action="OpenPickCargoInfoData" method="post">
+									Выбрать
+								</button>
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

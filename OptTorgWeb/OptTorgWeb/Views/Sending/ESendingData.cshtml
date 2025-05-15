@@ -1,0 +1,55 @@
+﻿@using OptTorgWebDB.Models
+@model Sending
+
+<div class="position-relative">
+	<div class="w-50 position-absolute top-50 start-50 translate-middle-x">
+		<!-- Заголовок -->
+		<p class="fs-3 text-decoration-underline fw-bold  m-1">Создать</p>
+		<!-- Заголовок 2 -->
+		<p class="fs-4 text-decoration-underline m-1">Склад</p>
+
+		<form class="p-3 border" asp-controller="Sending" asp-action="SaveChangesSending" method="post">
+			<div class="row">
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Доставка</p>
+					<div class="row pb-1">
+						<div class="col">
+							<div class="form-floating">
+								<input class="form-control" asp-for="IdSending" readonly>
+								<label asp-for="IdSending">Ид</label>
+								<span asp-validation-for="IdSending" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col">
+					<p class="fs-5 text-decoration-underline">Статус</p>
+					<div class="row">
+						<div class="form-floating">
+							<label class="dropdown-header p-1" asp-for="SsId">Статус</label>
+							<select class="form-select" aria-label="Default select example" asp-for="SsId">
+								@foreach (SendingStatus c in SendingStatus.GetAllSendingStatus())
+								{
+									<option value="@c.IdSs" selected="@(c.IdSs == Model.SsId)">@c.Status</option>
+								}
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="SaveChangesSending" method="post">Сохранить</button>
+			</div>
+		</form>
+
+		<form class="p-1 d-grid gap-1" asp-controller="Sending" method="get">
+			<div class="d-grid gap-2 col-5 mx-auto">
+					<button class="btn btn-lg btn-warning" type="submit" asp-action="TSending">Отмена</button>
+			</div>
+		</form>
+	</div>
+</div>
+

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using OptTorgWeb.Classes;
 using OptTorgWebDB.Models;
 
 namespace OptTorgWeb.Controllers
@@ -10,15 +12,24 @@ namespace OptTorgWeb.Controllers
         private string _CreateForm = "CEmployees";
         private string _EditForm = "EEmployees";
 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var controller = (Controller)context.Controller;
+            controller.ViewData["Layout"] = CurrentUser.layout;
+        }
         //Read
         [HttpGet]
         public IActionResult TAEmployees()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_AdressViewForm, Employees.GetAllEmployees());
         }
 
         public IActionResult TCEmployees()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_ContactsViewForm, Employees.GetAllEmployees());
         }
 
@@ -36,8 +47,6 @@ namespace OptTorgWeb.Controllers
 
             ViewData["Message"] = "Запись успешно создана";
             ViewData["Type"] = 0;
-            //TODO:
-            //Возврат к форме из которой пришел
 
             return View(_ContactsViewForm, Employees.GetAllEmployees());
         }
@@ -70,8 +79,7 @@ namespace OptTorgWeb.Controllers
             p.Active = true;
 
             Employees.UpdateEmployees(p);
-            //TODO:
-            //Возврат к форме из которой пришел
+
             return View(_ContactsViewForm, Employees.GetAllEmployees());
         }
 
@@ -81,13 +89,13 @@ namespace OptTorgWeb.Controllers
         public IActionResult DEmployees(int id)
         {
             Employees.DeleteEmployees(id);
-            //TODO:
-            //Возврат к форме из которой пришел
+
             return View(_ContactsViewForm, Employees.GetAllEmployees());
         }
-        //ToDo
-        public IActionResult DCascadeEmployees(int id)
+
+        public IActionResult DCascade(int id)
         {
+            Employees.DCascade(id);
             return View("TMeasureUnits", Employees.GetAllEmployees());
         }
     }

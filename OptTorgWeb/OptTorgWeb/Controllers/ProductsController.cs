@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using OptTorgWeb.Classes;
 using OptTorgWebDB.Models;
 
 namespace OptTorgWeb.Controllers
@@ -12,22 +14,33 @@ namespace OptTorgWeb.Controllers
         private string _CreateForm = "CProducts";
         private string _EditForm = "EProducts";
 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var controller = (Controller)context.Controller;
+            controller.ViewData["Layout"] = CurrentUser.layout;
+        }
         //Read
         [HttpGet]
         public IActionResult OpenTProductsMass()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_ViewFormMass, Products.GetAllProducts());
         }
 
         [HttpGet]
         public IActionResult OpenTProductsGeneral()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_ViewFormGeneral, Products.GetAllProducts());
         }
 
         [HttpGet]
         public IActionResult OpenTProductsCoast()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_ViewFormCoast, Products.GetAllProducts());
         }
 
@@ -91,6 +104,12 @@ namespace OptTorgWeb.Controllers
         //ToDo
         public IActionResult DCascadeProducts(int id)
         {
+            return View("TMeasureUnits", Products.GetAllProducts());
+        }
+
+        public IActionResult DCascade(int id)
+        {
+            Products.DCascade(id);
             return View("TMeasureUnits", Products.GetAllProducts());
         }
     }

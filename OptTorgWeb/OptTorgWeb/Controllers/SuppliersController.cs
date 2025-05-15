@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using OptTorgWeb.Classes;
 using OptTorgWebDB.Models;
 
 namespace OptTorgWeb.Controllers
@@ -10,15 +12,23 @@ namespace OptTorgWeb.Controllers
         private string _CreateForm = "CSuppliers";
         private string _EditForm = "ESuppliers";
 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var controller = (Controller)context.Controller;
+            controller.ViewData["Layout"] = CurrentUser.layout;
+        }
         //Read
         [HttpGet]
         public IActionResult TASuppliers()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_AdressViewForm, Suppliers.GetAllSuppliers());
         }
 
         public IActionResult TCSuppliers()
         {
+            ViewBag.Role = CurrentUser.role;
             return View(_ContactsViewForm, Suppliers.GetAllSuppliers());
         }
 
@@ -36,8 +46,6 @@ namespace OptTorgWeb.Controllers
 
             ViewData["Message"] = "Запись успешно создана";
             ViewData["Type"] = 0;
-            //TODO:
-            //Возврат к форме из которой пришел
 
             return View(_ContactsViewForm, Suppliers.GetAllSuppliers());
         }
@@ -54,6 +62,7 @@ namespace OptTorgWeb.Controllers
 
             return View(_CreateForm);
         }
+
         //Edit
         [HttpPost]
         public IActionResult OpenESuppliers(int id)
@@ -68,24 +77,20 @@ namespace OptTorgWeb.Controllers
             ViewData["Type"] = 0;
 
             Suppliers.UpdateSuppliers(p);
-            //TODO:
-            //Возврат к форме из которой пришел
             return View(_ContactsViewForm, Suppliers.GetAllSuppliers());
         }
 
         ////Delete
         [HttpPost]
-
         public IActionResult DSuppliers(int id)
         {
             Suppliers.DeleteSuppliers(id);
-            //TODO:
-            //Возврат к форме из которой пришел
             return View(_ContactsViewForm, Suppliers.GetAllSuppliers());
         }
-        //ToDo
-        public IActionResult DCascadeSuppliers(int id)
+
+        public IActionResult DCascade(int id)
         {
+            Suppliers.DCascade(id);
             return View("TMeasureUnits", Suppliers.GetAllSuppliers());
         }
     }

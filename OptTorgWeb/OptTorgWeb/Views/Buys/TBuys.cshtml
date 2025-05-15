@@ -2,7 +2,9 @@
 @model IEnumerable<Buys>
 
 <!DOCTYPE html>
-
+@{
+	Layout = ViewData["Layout"]?.ToString() ?? "_Layout";
+}
 <html>
 <body class="panel-body">
 	@{
@@ -60,7 +62,7 @@
 						<!-- Кнопки в таблице -->
 						<td style="width:1px; white-space:nowrap;">
 							<form asp-controller="Buys" method="post">
-								<input type="hidden" name="ProductId"
+								<input type="hidden" name="IdBuys"
 									   value="@e.IdBuys" />
 								<button type="submit" class="btn btn-warning" asp-action="OpenEBuys" method="post">
 									Изменить
@@ -69,13 +71,25 @@
 						</td>
 						<td style="width:1px; white-space:nowrap;">
 							<form asp-controller="Buys" method="post">
-								<input type="hidden" name="Id"
+								<input type="hidden" name="IdBuys"
 									   value="@e.IdBuys" />
 								<button type="submit" class="btn btn-danger" asp-action="DBuys" method="post">
 									Удалить
 								</button>
 							</form>
 						</td>
+						@if (ViewBag.Role == 0)
+						{
+							<td style="width:1px; white-space:nowrap;">
+								<form asp-controller="Buys" method="post">
+									<input type="hidden" name="IdBuys"
+										   value="@e.IdBuys" />
+									<button type="submit" class="btn btn-dark" asp-action="DCascade" method="post">
+										Удалить каскадно
+									</button>
+								</form>
+							</td>
+						}
 					</tr>
 				}
 			</tbody>

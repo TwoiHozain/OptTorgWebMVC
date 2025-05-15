@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using OptTorgWeb.Classes;
 using OptTorgWebDB.Models;
 
 namespace OptTorgWeb.Controllers
@@ -11,11 +13,18 @@ namespace OptTorgWeb.Controllers
         private string _CreateFormPickSupplier = "TPickSuppliers";
         private string _CreateFormPickProduct = "TPickProducts";
         private string _CreateFormPickBuysData = "TPickBuysData";
+        
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var controller = (Controller)context.Controller;
+            controller.ViewData["Layout"] = CurrentUser.layout;
+        }
 
         //Read
         [HttpGet]
         public IActionResult TBuys()
         {
+            ViewBag.Role = CurrentUser.role;
             return View(_ViewForm, Buys.GetAllBuys());
         }
 
@@ -76,9 +85,10 @@ namespace OptTorgWeb.Controllers
             //Возврат к форме из которой пришел
             return View(_ViewForm, Buys.GetAllBuys());
         }
-        //ToDo
-        public IActionResult DCascadeBuyss(int id)
+
+        public IActionResult DCascade(int id)
         {
+            Buys.DCascade(id);
             return View("TMeasureUnits", Buys.GetAllBuys());
         }
     }

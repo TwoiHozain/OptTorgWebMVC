@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using OptTorgWeb.Classes;
 using OptTorgWebDB.Models;
 
 namespace OptTorgWeb.Controllers
@@ -11,10 +13,17 @@ namespace OptTorgWeb.Controllers
         private string _CreateFormPickDriverData = "PickDriverData";
         private string _CreateFormPickDrivers = "DriversPickEmployee";
 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var controller = (Controller)context.Controller;
+            controller.ViewData["Layout"] = CurrentUser.layout;
+        }
         //Read
         [HttpGet]
         public IActionResult TDrivers()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_ViewForm, Drivers.GetAllDrivers());
         }
 
@@ -76,9 +85,10 @@ namespace OptTorgWeb.Controllers
             //Возврат к форме из которой пришел
             return View(_ViewForm, Drivers.GetAllDrivers());
         }
-        //ToDo
-        public IActionResult DCascadeDriverss(int id)
+
+        public IActionResult DCascade(int id)
         {
+            Drivers.DCascade(id);
             return View("TMeasureUnits", Drivers.GetAllDrivers());
         }
     }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using OptTorgWeb.Classes;
 using OptTorgWebDB.Models;
 
 namespace OptTorgWeb.Controllers
@@ -10,15 +12,22 @@ namespace OptTorgWeb.Controllers
         private string _CreateForm = "CStorages";
         private string _EditForm = "EStorages";
 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var controller = (Controller)context.Controller;
+            controller.ViewData["Layout"] = CurrentUser.layout;
+        }
         //Read
         [HttpGet]
         public IActionResult TAStorages()
         {
+            ViewBag.Role = CurrentUser.role;
             return View(_AdressViewForm, Storages.GetAllStorages());
         }
 
         public IActionResult TCStorages()
         {
+            ViewBag.Role = CurrentUser.role;
             return View(_ContactsViewForm, Storages.GetAllStorages());
         }
 
@@ -32,6 +41,11 @@ namespace OptTorgWeb.Controllers
         [HttpPost]
         public IActionResult CStorages(Storages p)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(_CreateForm);
+            }
+
             Storages.CreatrStorages(p);
 
             ViewData["Message"] = "Запись успешно создана";
@@ -45,6 +59,11 @@ namespace OptTorgWeb.Controllers
         [HttpPost]
         public IActionResult CFewStorages(Storages p)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(_CreateForm);
+            }
+
             Storages.CreatrStorages(p);
 
             ViewData["Message"] = "Запись успешно создана";
@@ -75,7 +94,6 @@ namespace OptTorgWeb.Controllers
 
         ////Delete
         [HttpPost]
-
         public IActionResult DStorages(int id)
         {
             Storages.DeleteStorages(id);
@@ -83,9 +101,10 @@ namespace OptTorgWeb.Controllers
             //Возврат к форме из которой пришел
             return View(_ContactsViewForm, Storages.GetAllStorages());
         }
-        //ToDo
-        public IActionResult DCascadeStorages(int id)
+
+        public IActionResult DCascade(int id)
         {
+            Storages.DCascade(id);
             return View("TMeasureUnits", Storages.GetAllStorages());
         }
     }

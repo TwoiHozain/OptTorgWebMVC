@@ -1,12 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OptTorgWeb.Classes;
 using OptTorgWebDB.Models;
+using OptTorgWeb.Classes;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace OptTorgWeb.Controllers
 {
     public class DeliveryController : Controller
     {
         private string _ViewForm = "TDelivery";
-        private string _EditForm = "E";
+        private string _EditForm = "EDeliveryData";
+        
+        private string _PickDeliveryForm = "TPickDelivery";
 
         private string _CreateFormPickStorage = "TPickStorage";
         private string _CreateFormPickEmployeeAccept = "TPickEmployeeAccept";
@@ -15,11 +20,47 @@ namespace OptTorgWeb.Controllers
         private string _CreateFormPickTransport = "TPickTransport";
         private string _CreateFormDeliveryData = "PickDeliveryData";
 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var controller = (Controller)context.Controller;
+            controller.ViewData["Layout"] = CurrentUser.layout;
+        }
         //Read
         [HttpGet]
         public IActionResult TDelivery()
         {
+            ViewBag.Role = CurrentUser.role;
+
             return View(_ViewForm, Delivery.GetAllDelivery());
+        }
+
+        [HttpGet]
+        public IActionResult OpenPickDelivery()
+        {
+            return View(_PickDeliveryForm, Delivery.GetDeliveryForTorg12());
+        }
+
+        [HttpPost]
+        public IActionResult CreateTorg12(long id)
+        {
+            //string exeDir = AppDomain.CurrentDomain.BaseDirectory;
+            //string baseDir = Path.GetFullPath(Path.Combine(exeDir, "..", "..", "..", ".."));
+
+            //String _sourcePath = Path.Combine(exeDir, "Torg12.XLS");
+            //String _outputPath = Path.Combine(exeDir, "Torg12tmp.XLS"); ;
+
+            string mimeType = "application/vnd.ms-excel";
+            string date = Delivery.GetDeliveryById(id).Date.ToShortDateString() + "  " +DateTime.Now.ToLongDateString();
+            date = date.Replace(".", " ");
+            date = date.Replace(",", " ");
+
+            string fileName = $"Torg12 {date}.XLS";
+
+            //byte[] fileBytes = System.IO.File.ReadAllBytes(_outputPath);
+
+            //System.IO.File.Delete(_outputPath);
+
+            return File(Torg12.CreateExcellTorg12(Delivery.GetDeliveryById(id)), mimeType, fileName);
         }
 
         //Create
@@ -65,6 +106,24 @@ namespace OptTorgWeb.Controllers
             Delivery.CreateDelivery(d);
             return View(_ViewForm, Delivery.GetAllDelivery());
         }
+        
+        //Edit
+        [HttpPost]
+        public IActionResult OpenEDelivery(long id)
+        {
+            return View(_EditForm, Delivery.GetDeliveryById(id));
+        }
+
+        [HttpPost]
+        public IActionResult SaveChangesDelivery(Delivery p)
+        {
+            ViewData["Message"] = "Запись успешно изменена";
+            ViewData["Type"] = 0;
+
+            Delivery.UpdateDelivery(p);
+
+            return View(_ViewForm, Delivery.GetAllDelivery());
+        }
 
         //Delete
         [HttpPost]
@@ -75,9 +134,10 @@ namespace OptTorgWeb.Controllers
             return View(_ViewForm, Delivery.GetAllDelivery());
         }
 
-        //ToDo
-        public IActionResult DCascadeDelivery(int id)
+
+        public IActionResult DCascade(int id)
         {
+            Delivery.DCascade(id);
             return View("TMeasureUnits", Delivery.GetAllDelivery());
         }
     }

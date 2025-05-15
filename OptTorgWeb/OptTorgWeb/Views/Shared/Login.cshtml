@@ -1,0 +1,40 @@
+﻿@using OptTorgWebDB.Models
+@model Employees
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/InvalidInputStyleSheet.css" />
+</head>
+<body class="text-center">
+	<form class="p-5 border d-grid gap-2" asp-controller="Home" asp-action="CMeasureUnits" method="post">
+		<div class="row">
+			<div class="col">
+				<button class="btn btn-lg btn-success" type="submit" asp-action="OpenLoginAsEmp" method="post">Я сотрудник</button>
+				<button class="btn btn-lg btn-success" type="submit" asp-action="OpenLoginAsCustomer" method="post">Я клиент</button>
+			</div>
+		</div>
+
+	</form>
+
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Your content here -->
+			<div class="container">
+				<main role="main" class="pb-3">
+					@RenderBody()
+				</main>
+			</div>
+			<!-- End of your content -->
+		</div>
+	</div>
+</body>
+</html>
